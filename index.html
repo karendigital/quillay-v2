@@ -19,6 +19,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/img/mascota.webp">
+<link rel="preload" as="image" href="assets/img/logo.jpg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"LocalBusiness","name":"El Quillay de Pirque","description":"Arriendo por el día de piscina, piscina para niños y terraza full equipada en Pirque para hasta 20 personas.","url":"https://karendigital.github.io/quillay-v2/","image":"https://karendigital.github.io/quillay-v2/assets/img/portada.jpg","telephone":"+56993979291","priceRange":"$8.000 por persona","address":{"@type":"PostalAddress","addressLocality":"Pirque","addressRegion":"Región Metropolitana","addressCountry":"CL"},"openingHours":"Mo-Su 10:00-20:00","sameAs":["https://www.instagram.com/elquillaydepirque/"]}
 </script>
@@ -64,33 +65,133 @@ h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1;letter-spacing
 .astro .luna::after{content:"";position:absolute;width:22%;height:22%;left:56%;top:52%;border-radius:50%;background:rgba(150,160,210,.35);box-shadow:-28px -20px 0 -4px rgba(150,160,210,.25)}
 .estrellas{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0;background-image:radial-gradient(1.5px 1.5px at 12% 18%,#fff,transparent),radial-gradient(1px 1px at 28% 42%,#fff,transparent),radial-gradient(1.5px 1.5px at 44% 12%,#fff,transparent),radial-gradient(1px 1px at 63% 30%,#fff,transparent),radial-gradient(2px 2px at 78% 8%,#fff,transparent),radial-gradient(1px 1px at 88% 36%,#fff,transparent),radial-gradient(1px 1px at 7% 60%,#fff,transparent),radial-gradient(1.5px 1.5px at 52% 55%,#fff,transparent),radial-gradient(1px 1px at 93% 64%,#fff,transparent),radial-gradient(1px 1px at 35% 74%,#fff,transparent)}
 
-/* ================= NAV ================= */
-.nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:16px 0;transition:transform .4s ease}
-.nav .envoltura{display:flex;align-items:center;justify-content:space-between;gap:1rem}
-.marca{display:flex;align-items:center;gap:.6rem;text-decoration:none;font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:-.01em}
-.marca img{width:44px;height:auto;filter:drop-shadow(0 4px 6px rgba(0,0,0,.2))}
-.nav-der{display:flex;gap:.6rem;align-items:center}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;padding:1rem 1.6rem;border-radius:999px;font-family:var(--display);font-weight:700;font-size:1rem;text-decoration:none;border:0;cursor:pointer;position:relative;transition:background .25s,color .25s;transform:translate(var(--bx,0),var(--by,0))}
+/* ================= BOTONES ================= */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;padding:1rem 1.6rem;border-radius:999px;font-family:var(--display);font-weight:700;font-size:1rem;text-decoration:none;border:0;cursor:pointer;position:relative;transition:background .25s,color .25s}
 .btn svg{width:20px;height:20px;flex:none}
 .btn-wa{background:var(--tinta);color:#fff}
 .btn-wa:hover{background:var(--hoja)}
-.btn-borde{background:rgba(255,255,255,.55);color:var(--tinta);box-shadow:inset 0 0 0 2px var(--tinta);backdrop-filter:blur(8px)}
+.btn-borde{background:rgba(255,255,255,.55);color:var(--tinta);box-shadow:inset 0 0 0 2px var(--tinta);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .btn-borde:hover{background:#fff}
-.btn-chico{padding:.7rem 1.1rem;font-size:.92rem}
-.btn-menu{background:rgba(255,255,255,.7);color:var(--tinta);backdrop-filter:blur(10px)}
-.btn-menu i{display:block;width:18px;height:2px;background:currentColor;box-shadow:0 6px 0 currentColor;transform:translateY(-3px)}
 
-/* ================= MENÚ (pantalla completa) ================= */
-.menu{position:fixed;inset:0;z-index:80;background:var(--tinta);color:#fff;display:none;clip-path:circle(0% at calc(100% - 60px) 40px)}
-.menu.abierto{display:flex}
-.menu .envoltura{display:flex;flex-direction:column;justify-content:center;min-height:100%;padding:6rem 0 3rem}
-.menu ol{list-style:none}
-.menu li{overflow:hidden}
-.menu a{display:flex;align-items:baseline;gap:1.2rem;text-decoration:none;padding:.35rem 0;font-family:var(--display);font-weight:700;font-size:clamp(2rem,6vw,4.4rem);line-height:1.05}
-.menu a small{font-family:var(--cuerpo);font-weight:600;font-size:clamp(.9rem,1.4vw,1.1rem);color:var(--flor);font-variant-numeric:tabular-nums;min-width:3.6em}
-.menu a:hover span{color:var(--flor)}
-.menu-cerrar{position:absolute;top:18px;right:20px;background:#fff;color:var(--tinta)}
-.menu-pie{margin-top:2.4rem;display:flex;flex-wrap:wrap;gap:1rem;color:rgba(255,255,255,.7)}
+/* ================= NAV: barra de vidrio con la línea del día ================= */
+@property --ang{syntax:"<angle>";inherits:false;initial-value:0deg}
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:12px clamp(10px,2vw,20px) 0;pointer-events:none}
+.nav-pill{pointer-events:auto;margin-inline:auto;width:min(1180px,100%);display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:clamp(.5rem,1.6vw,1.4rem);
+  padding:.45rem .45rem .45rem .7rem;border-radius:999px;
+  background:rgba(255,255,255,.58);-webkit-backdrop-filter:blur(18px) saturate(1.6);backdrop-filter:blur(18px) saturate(1.6);
+  border:1px solid rgba(255,255,255,.75);box-shadow:0 18px 40px -22px rgba(19,48,31,.45),inset 0 1px 0 rgba(255,255,255,.8);
+  transition:width .6s cubic-bezier(.2,.8,.2,1),padding .5s,background .5s,border-color .5s,box-shadow .5s}
+.nav.compacta .nav-pill{width:min(980px,100%);padding:.3rem .35rem .3rem .55rem}
+.es-noche .nav-pill{background:rgba(18,24,62,.55);border-color:rgba(255,255,255,.14);box-shadow:0 18px 40px -22px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.08)}
+.marca{display:flex;align-items:center;gap:.55rem;text-decoration:none;color:var(--tinta);min-width:0}
+.es-noche .marca{color:#f4f6ff}
+.marca-ico{position:relative;flex:none;width:44px;height:44px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(160deg,#fffbe0,#e9f6d6);box-shadow:inset 0 0 0 1px rgba(47,106,51,.18)}
+.marca-ico img{width:40px;height:auto;transform-origin:50% 100%;animation:meceLogo 5s ease-in-out infinite}
+@keyframes meceLogo{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+.marca-txt{display:flex;flex-direction:column;line-height:1;white-space:nowrap}
+.marca-txt b{font-family:var(--display);font-weight:800;font-size:1.08rem;letter-spacing:-.02em}
+.marca-txt small{font-size:.74rem;font-weight:600;opacity:.65;margin-top:.18rem;max-height:1em;transition:opacity .4s,max-height .4s,margin .4s}
+.nav.compacta .marca-txt small{opacity:0;max-height:0;margin-top:0}
+
+/* Línea del día */
+.linea-dia{position:relative;height:44px;display:flex;align-items:center;justify-content:space-between;margin-inline:clamp(.4rem,2vw,1.6rem)}
+.ld-pista{position:absolute;left:6px;right:6px;top:50%;height:2px;margin-top:-1px;border-radius:2px;background:rgba(19,48,31,.14);overflow:hidden}
+.es-noche .ld-pista{background:rgba(255,255,255,.18)}
+.ld-progreso{position:absolute;inset:0;background:linear-gradient(90deg,var(--agua),var(--flor) 60%,#f08b8f 85%,#8d8ff0);transform:scaleX(0);transform-origin:left}
+.ld-sol{position:absolute;top:50%;left:6px;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:radial-gradient(circle at 38% 35%,#fff6c8,#ffd257 60%,#ffb43a);box-shadow:0 0 0 4px rgba(255,210,87,.25),0 0 14px 4px rgba(255,200,80,.5);z-index:2;pointer-events:none;will-change:left}
+.es-noche .ld-sol{background:radial-gradient(circle at 35% 35%,#fff,#dfe6ff 60%,#b9c4f0);box-shadow:0 0 0 4px rgba(200,212,255,.18),0 0 14px 4px rgba(200,212,255,.35)}
+.linea-dia a{position:relative;z-index:1;width:22px;height:44px;display:grid;place-items:center;text-decoration:none;color:inherit}
+.linea-dia a::before{content:"";width:8px;height:8px;border-radius:50%;background:#fff;box-shadow:0 0 0 2px rgba(19,48,31,.35);transition:transform .35s cubic-bezier(.2,1.6,.4,1),background .3s,box-shadow .3s}
+.linea-dia a.pasada::before{background:var(--agua);box-shadow:0 0 0 2px var(--agua)}
+.linea-dia a.actual::before{transform:scale(1.5);background:var(--tinta);box-shadow:0 0 0 3px #fff,0 0 0 5px var(--tinta)}
+.es-noche .linea-dia a.actual::before{background:#fff;box-shadow:0 0 0 3px #1b2350,0 0 0 5px #fff}
+.linea-dia a:hover::before,.linea-dia a:focus-visible::before{transform:scale(1.7)}
+.linea-dia a span{position:absolute;top:calc(100% + 8px);left:50%;transform:translate(-50%,-6px);opacity:0;pointer-events:none;white-space:nowrap;background:var(--tinta);color:#fff;font-size:.78rem;font-weight:600;padding:.4rem .65rem;border-radius:10px;transition:opacity .25s,transform .35s cubic-bezier(.2,.8,.2,1)}
+.linea-dia a span b{color:var(--flor);font-variant-numeric:tabular-nums;margin-right:.35rem}
+.linea-dia a:hover span,.linea-dia a:focus-visible span{opacity:1;transform:translate(-50%,0)}
+
+/* Botón reservar con borde animado */
+.btn-reservar{position:relative;display:inline-flex;align-items:center;gap:.5rem;height:44px;padding:0 1.15rem 0 .95rem;border-radius:999px;text-decoration:none;font-family:var(--display);font-weight:700;font-size:.95rem;color:#fff;
+  border:2px solid transparent;background:linear-gradient(var(--tinta),var(--tinta)) padding-box,conic-gradient(from var(--ang),var(--agua),var(--flor),#ffffff,var(--agua)) border-box;animation:giraBorde 4s linear infinite;transition:transform .3s}
+.btn-reservar svg{width:19px;height:19px}
+.btn-reservar:hover{transform:translateY(-1px)}
+@keyframes giraBorde{to{--ang:360deg}}
+.es-noche .btn-reservar{background:linear-gradient(var(--flor),var(--flor)) padding-box,conic-gradient(from var(--ang),var(--agua),#fff,var(--flor),var(--agua)) border-box;color:var(--tinta)}
+
+/* Hamburguesa que se transforma en X */
+.burger{position:relative;width:44px;height:44px;border:0;border-radius:50%;background:rgba(19,48,31,.08);cursor:pointer;display:grid;place-items:center;transition:background .3s}
+.burger:hover{background:rgba(19,48,31,.16)}
+.es-noche .burger{background:rgba(255,255,255,.12);color:#fff}
+.burger span{position:absolute;left:13px;right:13px;height:2px;border-radius:2px;background:currentColor;transition:transform .5s cubic-bezier(.7,0,.2,1),width .4s}
+.burger span:nth-child(1){transform:translateY(-4px)}
+.burger span:nth-child(2){transform:translateY(4px);right:17px}
+.burger:hover span:nth-child(2){right:13px}
+.menu-abierto .burger span:nth-child(1){transform:rotate(45deg)}
+.menu-abierto .burger span:nth-child(2){transform:rotate(-45deg);right:13px}
+
+/* Con el menú abierto la barra queda encima, limpia */
+.menu-abierto .nav{z-index:85}
+.menu-abierto .nav-pill{background:transparent;border-color:transparent;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+.menu-abierto .marca{color:#fff}
+.menu-abierto .linea-dia,.menu-abierto .btn-reservar{opacity:0;pointer-events:none}
+.menu-abierto .burger{background:#fff;color:var(--tinta)}
+
+/* ================= MENÚ: capas curvas + vista previa ================= */
+.menu{position:fixed;inset:0;z-index:80;visibility:hidden;color:#fff;overflow:hidden}
+.menu.abierto{visibility:visible}
+.menu-curvas{position:absolute;inset:0;width:100%;height:100%}
+.menu-fondo{position:absolute;inset:0;background:var(--tinta);opacity:0}
+.no-gsap .menu-fondo,.calma .menu-fondo{opacity:1}
+.menu-cont{position:relative;height:100%;overflow-y:auto;display:grid;grid-template-columns:1.25fr .75fr;grid-template-rows:1fr auto;gap:2rem clamp(2rem,5vw,5rem);width:min(1240px,100% - 2.5rem);margin-inline:auto;padding:clamp(6rem,14vh,8rem) 0 clamp(1.4rem,4vh,2.4rem)}
+.menu-lista{list-style:none;align-self:center;counter-reset:none}
+.menu-lista li{overflow:hidden}
+.menu-lista a{display:flex;align-items:baseline;gap:clamp(.8rem,2vw,1.6rem);padding:.2rem 0;text-decoration:none;color:rgba(255,255,255,.92)}
+.menu-lista small{flex:none;width:3.4em;font-weight:600;font-size:clamp(.82rem,1.2vw,1rem);color:var(--flor);font-variant-numeric:tabular-nums}
+.rueda{position:relative;display:block;overflow:hidden;font-family:var(--display);font-weight:700;font-size:clamp(1.9rem,5.2vw,4.1rem);line-height:1.08;letter-spacing:-.025em}
+.rueda>span{display:block;white-space:nowrap}
+.rueda>span+span{position:absolute;left:0;top:100%;color:var(--flor)}
+.rueda .char{display:inline-block;transition:transform .55s cubic-bezier(.7,0,.2,1);transition-delay:calc(var(--i,0) * 16ms)}
+.menu-lista a:hover .rueda .char,.menu-lista a:focus-visible .rueda .char{transform:translateY(-100%)}
+.menu-lista li.actual a::after{content:"";align-self:center;width:10px;height:10px;border-radius:50%;background:var(--agua);box-shadow:0 0 0 5px rgba(23,178,194,.25);margin-left:.4rem}
+.menu-vista{align-self:center;position:relative;aspect-ratio:3/4;max-height:60vh;width:100%;border-radius:999px 999px 26px 26px;overflow:hidden;background:#244a32}
+.menu-vista img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;clip-path:inset(100% 0 0 0)}
+.menu-vista img.ver{clip-path:inset(0 0 0 0)}
+.menu-vista figcaption{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:2;white-space:nowrap;background:rgba(255,255,255,.9);color:var(--tinta);font-weight:600;font-size:.85rem;padding:.4rem .85rem;border-radius:999px}
+.menu-pie{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,auto) 1fr;gap:1rem clamp(1.4rem,4vw,3.4rem);align-items:end;padding-top:1.4rem;border-top:1px solid rgba(255,255,255,.14)}
+.menu-pie small{display:block;color:rgba(255,255,255,.55);font-size:.8rem;margin-bottom:.25rem}
+.menu-pie a,.menu-pie span{color:#fff;text-decoration:none;font-weight:600}
+.menu-pie a:hover{color:var(--flor)}
+.estado{display:inline-flex;align-items:center;gap:.5rem}
+.estado::before{content:"";width:9px;height:9px;border-radius:50%;background:#9aa39d}
+.estado.abierto::before{background:#4ade80;box-shadow:0 0 0 0 rgba(74,222,128,.6);animation:pulsoVerde 2s infinite}
+@keyframes pulsoVerde{70%{box-shadow:0 0 0 8px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
+.menu-pie .btn-wa-menu{justify-self:end;display:inline-flex;align-items:center;gap:.55rem;padding:.9rem 1.4rem;border-radius:999px;background:var(--flor);color:var(--tinta);font-family:var(--display);font-weight:700}
+.menu-pie .btn-wa-menu:hover{background:#fff;color:var(--tinta)}
+.menu-pie .btn-wa-menu svg{width:19px;height:19px}
+
+@media (max-width:1060px){.linea-dia{display:none}.nav-pill{grid-template-columns:auto 1fr auto auto}}
+@media (max-width:960px){
+  .menu-cont{grid-template-columns:1fr;grid-template-rows:auto auto;align-content:start;padding-top:6.2rem}
+  .menu-vista{display:none}
+  .menu-pie{grid-template-columns:1fr 1fr;align-items:start}
+  .menu-pie .btn-wa-menu{grid-column:1/-1;justify-self:stretch;justify-content:center}
+}
+@media (max-width:560px){
+  .nav{padding:8px 8px 0}
+  .nav-pill{padding:.3rem .3rem .3rem .4rem;gap:.4rem}
+  .marca-ico{width:38px;height:38px}.marca-ico img{width:34px}
+  .marca-txt b{font-size:.98rem}
+  .btn-reservar{height:40px;padding:0 .85rem}
+  .btn-reservar span{display:none}
+  .btn-reservar{width:40px;padding:0;justify-content:center}
+  .burger{width:40px;height:40px}
+  .burger span{left:12px;right:12px}.burger span:nth-child(2){right:15px}
+  .menu-lista a{padding:.12rem 0}
+  .rueda{font-size:clamp(1.7rem,8.6vw,2.4rem)}
+}
+@media (max-width:350px){.marca-txt small{display:none}}
+@media (max-width:380px){.rueda{font-size:7.1vw}.menu-lista small{width:2.9em;font-size:.78rem}.menu-lista a{gap:.6rem}}
+@media (max-height:620px) and (min-width:961px){.rueda{font-size:clamp(1.6rem,6.5vh,3rem)}.menu-vista{max-height:52vh}}
 
 /* ================= RELOJ (HUD) ================= */
 .reloj{position:fixed;left:18px;bottom:18px;z-index:40;display:flex;align-items:center;gap:.7rem;padding:.55rem 1rem .55rem .6rem;border-radius:999px;background:rgba(255,255,255,.78);color:var(--tinta);backdrop-filter:blur(12px);box-shadow:0 10px 30px -14px rgba(0,0,0,.4);font-variant-numeric:tabular-nums}
@@ -258,26 +359,27 @@ input[type=date]{width:100%;font:inherit;font-weight:600;padding:.9rem 1rem;bord
 .visor .cerrar{top:18px;right:18px}.visor .ant{left:18px;top:50%}.visor .sig{right:18px;top:50%}
 @media (max-width:640px){.visor .ant,.visor .sig{top:auto;bottom:18px}}
 
-/* ================= INTRO: AMANECER ================= */
+/* ================= INTRO: la gota, el logo y el Quillay (PixiJS) ================= */
 #intro{display:none}
-.js.intro-on #intro{position:fixed;inset:0;z-index:100;display:block;overflow:hidden;background:linear-gradient(180deg,#0f1638,#2a2a5c);animation:introSeguro .6s ease 9s forwards}
-.intro-on body{overflow:hidden;animation:desbloquea 0s linear 9s forwards}
+.js.intro-on #intro{position:fixed;inset:0;z-index:100;display:block;overflow:hidden;
+  background:radial-gradient(120% 90% at 50% 28%,#fdfbf2 0%,#eaf5ee 55%,#d2e8e1 100%);animation:introSeguro .6s ease 14s forwards}
+.intro-on body{overflow:hidden;animation:desbloquea 0s linear 14s forwards}
 @keyframes introSeguro{to{opacity:0;visibility:hidden}}
 @keyframes desbloquea{to{overflow:visible}}
-.intro-cielo{position:absolute;inset:0;background:linear-gradient(180deg,#9fdcf5,#ffe2b8);opacity:0}
-.intro-sol{position:absolute;left:50%;top:62%;width:clamp(120px,18vw,220px);aspect-ratio:1;margin-left:calc(clamp(120px,18vw,220px) / -2);border-radius:50%;background:radial-gradient(circle at 40% 38%,#fff6c8,#ffd257 55%,#ffb43a);box-shadow:0 0 120px 40px rgba(255,200,90,.5)}
-.intro-montes{position:absolute;left:0;right:0;bottom:0;width:100%;height:46vh}
-.intro-montes .izq,.intro-montes .der{will-change:transform}
-.intro-hora{position:absolute;left:50%;top:16%;transform:translateX(-50%);text-align:center;color:#fff;font-family:var(--display)}
-.intro-hora b{display:block;font-size:clamp(3.4rem,10vw,7rem);font-weight:800;font-variant-numeric:tabular-nums;line-height:1;letter-spacing:-.03em}
-.intro-hora span{font-weight:600;font-size:1.05rem;opacity:.85}
-.intro-mascota{position:absolute;left:50%;bottom:24vh;width:clamp(150px,22vw,250px);margin-left:calc(clamp(150px,22vw,250px) / -2);transform-origin:50% 100%}
-.intro-mascota img{width:100%;filter:drop-shadow(0 16px 20px rgba(0,0,0,.35))}
-.intro-mascota .globo{position:absolute;left:78%;top:4%;background:#fff;color:var(--tinta);font-family:var(--display);font-weight:800;font-size:clamp(1rem,2.4vw,1.25rem);padding:.6rem 1rem;border-radius:18px 18px 18px 4px;white-space:nowrap;transform:scale(0);transform-origin:0 100%}
-.parpado{position:absolute;border-radius:50%;background:radial-gradient(circle at 50% 30%,#d29b52,#a9712f);transform:scaleY(0);transform-origin:50% 0}
-.parpado.izq{left:39.4%;top:55.2%;width:7.4%;height:9.4%}
-.parpado.der{left:53.4%;top:54.6%;width:7.4%;height:9.4%}
-.intro-saltar{position:absolute;right:18px;bottom:18px;border:0;border-radius:999px;padding:.6rem 1.1rem;background:rgba(255,255,255,.85);color:var(--tinta);font-weight:700;cursor:pointer;z-index:2}
+#intro canvas{position:absolute;inset:0;width:100%!important;height:100%!important;display:block}
+.intro-grano{position:absolute;inset:0;pointer-events:none;opacity:.14;mix-blend-mode:multiply;z-index:2;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .1 0 0 0 0 .2 0 0 0 0 .12 0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.intro-marca{position:absolute;left:50%;top:70%;transform:translateX(-50%);z-index:3;text-align:center;color:var(--tinta);pointer-events:none;visibility:hidden;width:max-content;max-width:92vw}
+.intro-marca b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(2.3rem,7vw,4.2rem);letter-spacing:-.035em;line-height:1;font-variation-settings:"wdth" 90}
+.intro-marca span{display:block;font-weight:600;font-size:clamp(.9rem,2.4vw,1.05rem);color:var(--hoja);margin-top:.45rem;letter-spacing:.02em}
+.intro-marca .linea-oro{display:block;height:2px;width:0;margin:.7rem auto 0;background:linear-gradient(90deg,transparent,#d8a93a,transparent)}
+.intro-globo{position:absolute;z-index:3;left:0;top:0;transform-origin:0 100%;background:#fff;color:var(--tinta);font-family:var(--display);font-weight:700;font-size:clamp(.95rem,2.6vw,1.15rem);line-height:1.15;padding:.6rem .95rem;border-radius:18px 18px 18px 5px;box-shadow:0 18px 30px -16px rgba(19,48,31,.5);white-space:nowrap;visibility:hidden}
+.intro-globo small{display:block;font-family:var(--cuerpo);font-weight:600;font-size:.72em;color:var(--agua-osc);margin-top:.15rem}
+.intro-carga{position:absolute;left:0;right:0;bottom:0;height:3px;z-index:3;background:rgba(19,48,31,.08)}
+.intro-carga i{display:block;height:100%;background:linear-gradient(90deg,var(--agua),var(--flor));transform:scaleX(0);transform-origin:left}
+.intro-pct{position:absolute;left:clamp(14px,3vw,28px);bottom:14px;z-index:3;font-variant-numeric:tabular-nums;font-weight:600;font-size:.82rem;color:rgba(19,48,31,.55)}
+.intro-saltar{position:absolute;right:clamp(12px,3vw,24px);bottom:12px;z-index:4;border:0;border-radius:999px;padding:.55rem 1rem;background:rgba(255,255,255,.75);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:var(--tinta);font-weight:700;font-size:.85rem;cursor:pointer}
+.intro-saltar:hover{background:#fff}
 
 /* ================= RESPONSIVE ================= */
 @media (max-width:960px){
@@ -294,9 +396,6 @@ input[type=date]{width:100%;font:inherit;font-weight:600;padding:.9rem 1rem;bord
   .mascota-noche{right:2%;top:-18%}
 }
 @media (max-width:560px){
-  .nav .btn-wa span{display:none}
-  .nav .btn-wa{padding:.7rem}
-  .marca span{font-size:1rem}
   .acciones .btn{width:100%}
   .reloj{left:12px;bottom:12px;padding:.45rem .8rem .45rem .5rem}
   .reloj svg{width:28px;height:28px}
@@ -313,21 +412,14 @@ input[type=date]{width:100%;font:inherit;font-weight:600;padding:.9rem 1rem;bord
 </head>
 <body>
 
-<!-- ======= INTRO: amanecer en El Quillay ======= -->
+<!-- ======= INTRO: la gota, el logo y el Quillay ======= -->
 <div id="intro" aria-hidden="true">
-  <div class="intro-cielo"></div>
-  <div class="intro-sol"></div>
-  <div class="intro-hora"><b>07:00</b><span>Amanece en Pirque</span></div>
-  <div class="intro-mascota">
-    <img src="assets/img/mascota.webp" alt="" width="640" height="605">
-    <i class="parpado izq"></i><i class="parpado der"></i>
-    <div class="globo">¡Buenos días! 👋</div>
-  </div>
-  <svg class="intro-montes" viewBox="0 0 1440 460" preserveAspectRatio="none">
-    <g class="izq"><path fill="#2b3f6e" d="M0 460V170l120-60 110 50 120-110 140 120 130-40 100 70v260z"/><path fill="#2f6a33" d="M0 460V300l160-40 170 50 160-30 230 60v120z"/></g>
-    <g class="der"><path fill="#2b3f6e" d="M1440 460V150l-140-50-120 80-150-100-140 120-130-10-140 80v190z"/><path fill="#2f6a33" d="M1440 460V280l-190-30-160 50-200-20-170 60v120z"/></g>
-  </svg>
-  <button class="intro-saltar" type="button">Saltar</button>
+  <i class="intro-grano"></i>
+  <div class="intro-globo">¡Hola! 👋<small>Bienvenidos a El Quillay</small></div>
+  <div class="intro-marca"><b>El Quillay</b><span>de Pirque</span><i class="linea-oro"></i></div>
+  <div class="intro-pct"><span id="introPct">0</span>%</div>
+  <div class="intro-carga"><i></i></div>
+  <button class="intro-saltar" type="button">Saltar intro</button>
 </div>
 
 <div class="cielo" aria-hidden="true"></div>
@@ -335,34 +427,69 @@ input[type=date]{width:100%;font:inherit;font-weight:600;padding:.9rem 1rem;bord
 <div class="astro" aria-hidden="true"><i class="sol"></i><i class="luna"></i></div>
 
 <!-- ======= NAV ======= -->
-<header class="nav">
-  <div class="envoltura">
-    <a class="marca" href="#llegada"><img src="assets/img/mascota-mini.png" alt="" width="44" height="42"><span>El Quillay de Pirque</span></a>
-    <div class="nav-der">
-      <a class="btn btn-wa btn-chico iman" data-wa href="https://wa.me/56993979291" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.7-5.2A8.5 8.5 0 1 1 21 11.5z"/></svg>
-        <span>Reservar</span>
-      </a>
-      <button class="btn btn-menu btn-chico" id="abrirMenu" aria-expanded="false" aria-controls="menu"><i aria-hidden="true"></i>Menú</button>
-    </div>
+<header class="nav" id="nav">
+  <div class="nav-pill">
+    <a class="marca" href="#llegada" aria-label="El Quillay de Pirque, ir al inicio">
+      <span class="marca-ico"><img src="assets/img/mascota-mini.png" alt="" width="40" height="38"></span>
+      <span class="marca-txt"><b>El Quillay</b><small>de Pirque</small></span>
+    </a>
+    <nav class="linea-dia" aria-label="Momentos del día">
+      <span class="ld-pista"><i class="ld-progreso"></i></span>
+      <i class="ld-sol" aria-hidden="true"></i>
+      <a href="#llegada"><span><b>10:00</b>Llegada</span></a>
+      <a href="#bienvenida"><span><b>11:00</b>Bienvenida</span></a>
+      <a href="#espacios"><span><b>12:00</b>El espacio</span></a>
+      <a href="#sobremesa"><span><b>14:00</b>Fotos</span></a>
+      <a href="#celebraciones"><span><b>16:00</b>Celebraciones</span></a>
+      <a href="#reserva"><span><b>18:00</b>Calcula tu reserva</span></a>
+      <a href="#noche"><span><b>20:00</b>Contacto</span></a>
+    </nav>
+    <a class="btn-reservar" data-wa href="https://wa.me/56993979291" target="_blank" rel="noopener" aria-label="Reservar por WhatsApp">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.7-5.2A8.5 8.5 0 1 1 21 11.5z"/></svg>
+      <span>Reservar</span>
+    </a>
+    <button class="burger" id="abrirMenu" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú"><span></span><span></span></button>
   </div>
 </header>
 
-<nav class="menu" id="menu" aria-label="Secciones">
-  <button class="btn btn-chico menu-cerrar" id="cerrarMenu">Cerrar</button>
-  <div class="envoltura">
-    <ol>
-      <li><a href="#llegada"><small>10:00</small><span>Llegada</span></a></li>
-      <li><a href="#bienvenida"><small>11:00</small><span>Bienvenida</span></a></li>
-      <li><a href="#espacios"><small>12:00</small><span>El espacio</span></a></li>
-      <li><a href="#sobremesa"><small>14:00</small><span>Fotos</span></a></li>
-      <li><a href="#celebraciones"><small>16:00</small><span>Celebraciones</span></a></li>
-      <li><a href="#reserva"><small>18:00</small><span>Calcula tu reserva</span></a></li>
-      <li><a href="#noche"><small>20:00</small><span>Contacto</span></a></li>
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menú">
+  <svg class="menu-curvas" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+    <path class="c1" fill="#17b2c2" d="M0 0H100V0Q50 0 0 0Z"/>
+    <path class="c2" fill="#2f6a33" d="M0 0H100V0Q50 0 0 0Z"/>
+    <path class="c3" fill="#13301f" d="M0 0H100V0Q50 0 0 0Z"/>
+  </svg>
+  <div class="menu-fondo"></div>
+  <div class="menu-cont">
+    <ol class="menu-lista">
+      <li><a href="#llegada" data-vista="0"><small>10:00</small><span class="rueda"><span>Llegada</span><span aria-hidden="true">Llegada</span></span></a></li>
+      <li><a href="#bienvenida" data-vista="1"><small>11:00</small><span class="rueda"><span>Bienvenida</span><span aria-hidden="true">Bienvenida</span></span></a></li>
+      <li><a href="#espacios" data-vista="2"><small>12:00</small><span class="rueda"><span>El espacio</span><span aria-hidden="true">El espacio</span></span></a></li>
+      <li><a href="#sobremesa" data-vista="3"><small>14:00</small><span class="rueda"><span>Fotos</span><span aria-hidden="true">Fotos</span></span></a></li>
+      <li><a href="#celebraciones" data-vista="4"><small>16:00</small><span class="rueda"><span>Celebraciones</span><span aria-hidden="true">Celebraciones</span></span></a></li>
+      <li><a href="#reserva" data-vista="5"><small>18:00</small><span class="rueda"><span>Calcula tu reserva</span><span aria-hidden="true">Calcula tu reserva</span></span></a></li>
+      <li><a href="#noche" data-vista="6"><small>20:00</small><span class="rueda"><span>Contacto</span><span aria-hidden="true">Contacto</span></span></a></li>
     </ol>
-    <div class="menu-pie"><span>+56 9 9397 9291</span><span>@elquillaydepirque</span><span>Pirque, Región Metropolitana</span></div>
+    <figure class="menu-vista" aria-hidden="true">
+      <img src="assets/img/portada.jpg" alt="" loading="lazy" class="ver">
+      <img src="assets/img/mesa-familia.jpg" alt="" loading="lazy">
+      <img src="assets/img/piscina-noche.jpg" alt="" loading="lazy">
+      <img src="assets/img/terraza-techada.jpg" alt="" loading="lazy">
+      <img src="assets/img/mesa-larga.jpg" alt="" loading="lazy">
+      <img src="assets/img/piscina-peques.jpg" alt="" loading="lazy">
+      <img src="assets/img/piscina.jpg" alt="" loading="lazy">
+      <figcaption id="vistaTxt">La terraza a las 10:00</figcaption>
+    </figure>
+    <div class="menu-pie">
+      <div><small>Hoy en Pirque</small><span class="estado" id="estado">Abierto de 10:00 a 20:00</span></div>
+      <div><small>WhatsApp</small><a href="https://wa.me/56993979291" data-wa target="_blank" rel="noopener">+56 9 9397 9291</a></div>
+      <div><small>Instagram</small><a href="https://www.instagram.com/elquillaydepirque/" target="_blank" rel="noopener">@elquillaydepirque</a></div>
+      <a class="btn-wa-menu" data-wa href="https://wa.me/56993979291" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.7-5.2A8.5 8.5 0 1 1 21 11.5z"/></svg>
+        Reservar por WhatsApp
+      </a>
+    </div>
   </div>
-</nav>
+</div>
 
 <!-- ======= RELOJ DEL DÍA ======= -->
 <div class="reloj" aria-hidden="true">
@@ -612,14 +739,18 @@ input[type=date]{width:100%;font:inherit;font-weight:600;padding:.9rem 1rem;bord
   $$('[data-wa]').forEach(function(a){a.href=wa('Hola, quiero consultar disponibilidad en El Quillay de Pirque 🌞')});
   $$('[data-wa-txt]').forEach(function(a){a.href=wa(a.getAttribute('data-wa-txt'))});
 
-  /* Menú */
-  var menu=$('#menu'),ab=$('#abrirMenu'),ce=$('#cerrarMenu');
-  window.__menu={abrir:function(){menu.classList.add('abierto');menu.style.clipPath='circle(150% at calc(100% - 60px) 40px)';ab.setAttribute('aria-expanded','true');ce.focus()},
-    cerrar:function(){menu.classList.remove('abierto');menu.style.clipPath='';ab.setAttribute('aria-expanded','false');ab.focus()}};
-  ab.addEventListener('click',function(){window.__menu.abrir()});
-  ce.addEventListener('click',function(){window.__menu.cerrar()});
-  $$('a',menu).forEach(function(a){a.addEventListener('click',function(){window.__menu.cerrar()})});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('abierto'))window.__menu.cerrar()});
+  /* Menú (versión simple; con GSAP se reemplaza por la animada) */
+  var menu=$('#menu'),ab=$('#abrirMenu');
+  window.__menu={abierto:false,
+    abrir:function(){menu.classList.add('abierto');document.documentElement.classList.add('menu-abierto');ab.setAttribute('aria-expanded','true');ab.setAttribute('aria-label','Cerrar menú');window.__menu.abierto=true;var f=$('.menu-lista a',menu);if(f)f.focus()},
+    cerrar:function(){menu.classList.remove('abierto');document.documentElement.classList.remove('menu-abierto');ab.setAttribute('aria-expanded','false');ab.setAttribute('aria-label','Abrir menú');window.__menu.abierto=false}};
+  ab.addEventListener('click',function(){window.__menu.abierto?window.__menu.cerrar():window.__menu.abrir()});
+  $$('a',menu).forEach(function(a){a.addEventListener('click',function(){if(window.__menu.abierto)window.__menu.cerrar()})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&window.__menu.abierto){window.__menu.cerrar();ab.focus()}});
+
+  /* Abierto o cerrado según la hora en Pirque */
+  (function(){var el=$('#estado');try{var p=new Intl.DateTimeFormat('es-CL',{timeZone:'America/Santiago',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date()).split(':');var h=(+p[0])+(+p[1])/60;
+    if(h>=10&&h<20){el.textContent='Abierto ahora, hasta las 20:00';el.classList.add('abierto')}else{el.textContent=h<10?'Hoy abrimos a las 10:00':'Mañana abrimos a las 10:00'}}catch(e){}})();
 
   /* Calculadora */
   var VALOR=8000,MINIMO=80000;
@@ -674,6 +805,9 @@ input[type=date]{width:100%;font:inherit;font-weight:600;padding:.9rem 1rem;bord
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Draggable.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/InertiaPlugin.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/pixi.js@7.4.2/dist/pixi.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pixi-filters@5.3.0/dist/browser/pixi-filters.min.js"></script>
 
 <!-- ======= EFECTOS ======= -->
 <script>
@@ -743,6 +877,7 @@ input[type=date]{width:100%;font:inherit;font-weight:600;padding:.9rem 1rem;bord
     var txt=String(Math.min(hh,20)).padStart(2,'0')+':'+(hh>=20?'00':String(mm).padStart(2,'0'));
     if(txt!==ultimaHora){horaTxt.textContent=txt;ultimaHora=txt}
     aguja.style.transform='rotate('+(p*600*6)+'deg)';horaria.style.transform='rotate('+((10+p*10)*30)+'deg)';
+    if(window.__navDia)window.__navDia(p,idxMomento<0?0:idxMomento);
   }
   var secciones=$$('.hora'),horas=[10,11,12,14,16,18,20],tops=[],idxMomento=-1;
   function mide(){tops=secciones.map(function(sc){return sc.getBoundingClientRect().top+window.scrollY})}
@@ -776,7 +911,7 @@ input[type=date]{width:100%;font:inherit;font-weight:600;padding:.9rem 1rem;bord
       .fromTo('.hero-foto',{clipPath:'inset(100% 0% 0% 0%)'},{clipPath:'inset(0% 0% 0% 0%)',duration:1.4,ease:'power4.inOut',clearProps:'clipPath'},0)
       .from('.hero-foto img',{scale:1.3,duration:1.8},0)
       .from('.cordillera path',{yPercent:60,duration:1.4,stagger:.12},0.2)
-      .from('.nav,.reloj',{y:-20,opacity:0,duration:.8},.5);
+      .from('.nav-pill',{y:-30,opacity:0,duration:.9},.4).from('.reloj',{y:20,opacity:0,duration:.8},.5);
     return tl;
   }
 
@@ -958,44 +1093,241 @@ input[type=date]{width:100%;font:inherit;font-weight:600;padding:.9rem 1rem;bord
     });
   }
 
-  /* ---------- 13. Menú con apertura circular ---------- */
-  var menu=$('#menu');
-  window.__menu.abrir=function(){menu.classList.add('abierto');if(window.__lenis)__lenis.stop();$('#abrirMenu').setAttribute('aria-expanded','true');
-    gsap.fromTo(menu,{clipPath:'circle(0% at calc(100% - 60px) 40px)'},{clipPath:'circle(150% at calc(100% - 60px) 40px)',duration:.9,ease:'power4.inOut'});
-    gsap.fromTo('.menu li a',{yPercent:110},{yPercent:0,stagger:.05,duration:.8,ease:'expo.out',delay:.25});$('#cerrarMenu').focus()};
-  window.__menu.cerrar=function(){if(window.__lenis)__lenis.start();$('#abrirMenu').setAttribute('aria-expanded','false');
-    gsap.to(menu,{clipPath:'circle(0% at calc(100% - 60px) 40px)',duration:.6,ease:'power4.inOut',onComplete:function(){menu.classList.remove('abierto')}})};
+  /* ---------- 13. Barra: línea del día, compacta y se esconde al bajar ---------- */
+  var navEl=$('#nav'),ldSol=$('.ld-sol'),ldProg=$('.ld-progreso'),ldPista=$('.ld-pista'),ldLinks=$$('.linea-dia a'),menuLis=$$('.menu-lista li');
+  var horasNav=[10,11,12,14,16,18,20];
+  window.__navDia=function(p,idx){
+    var h=10+p*10,i=0;while(i<horasNav.length-2&&h>=horasNav[i+1])i++;
+    var pos=(i+gsap.utils.clamp(0,1,(h-horasNav[i])/(horasNav[i+1]-horasNav[i])))/(horasNav.length-1);
+    if(ldSol&&ldPista.offsetWidth){ldSol.style.left=(6+pos*ldPista.offsetWidth)+'px';ldProg.style.transform='scaleX('+pos+')'}
+    ldLinks.forEach(function(a,k){a.classList.toggle('actual',k===idx);a.classList.toggle('pasada',k<idx)});
+    menuLis.forEach(function(li,k){li.classList.toggle('actual',k===idx)});
+  };
+  var navOculta=false;
+  ScrollTrigger.create({start:0,end:'max',onUpdate:function(s){
+    var y=s.scroll();navEl.classList.toggle('compacta',y>80);
+    if(window.__menu&&window.__menu.abierto)return;
+    var ocultar=y>420&&s.direction>0;
+    if(ocultar!==navOculta){navOculta=ocultar;gsap.to(navEl,{yPercent:ocultar?-140:0,duration:ocultar?.45:.6,ease:ocultar?'power3.in':'expo.out',overwrite:'auto'})}
+  }});
 
-  /* ---------- 14. Nav se esconde al bajar y vuelve al subir ---------- */
-  var navEl=$('.nav');ScrollTrigger.create({start:120,end:'max',onUpdate:function(s){gsap.to(navEl,{yPercent:s.direction>0?-120:0,duration:.4,ease:'power2.out',overwrite:'auto'})},onLeaveBack:function(){gsap.to(navEl,{yPercent:0,duration:.3})}});
+  /* ---------- 14. Menú: capas curvas, letras que ruedan y vista previa ---------- */
+  var menuEl=$('#menu'),burger=$('#abrirMenu');
+  if(window.SplitText)$$('.rueda>span').forEach(function(s){var sp=SplitText.create(s,{type:'chars'});sp.chars.forEach(function(c,i){c.style.setProperty('--i',i)})});
+  var dMedio='M0 0H100V45Q50 100 0 45Z',dLleno='M0 0H100V100Q50 100 0 100Z';
+  var tlMenu=gsap.timeline({paused:true,onReverseComplete:function(){menuEl.classList.remove('abierto');raiz.classList.remove('menu-abierto')}});
+  ['.c1','.c2','.c3'].forEach(function(c,i){
+    tlMenu.to('.menu-curvas '+c,{keyframes:[{attr:{d:dMedio},duration:.36,ease:'power3.in'},{attr:{d:dLleno},duration:.44,ease:'power3.out'}]},i*.09);
+  });
+  tlMenu.set('.menu-fondo',{opacity:1})
+    .fromTo('.menu-lista li a',{yPercent:115},{yPercent:0,duration:.85,ease:'expo.out',stagger:.05},'-=.2')
+    .fromTo('.menu-vista',{clipPath:'inset(100% 0% 0% 0% round 999px 999px 26px 26px)'},{clipPath:'inset(0% 0% 0% 0% round 999px 999px 26px 26px)',duration:1.05,ease:'expo.inOut'},'<')
+    .fromTo('.menu-pie>*',{y:24,opacity:0},{y:0,opacity:1,duration:.6,stagger:.06,ease:'power3.out'},'-=.7');
+  window.__menu.abrir=function(){
+    if(window.__menu.abierto)return;window.__menu.abierto=true;
+    menuEl.classList.add('abierto');raiz.classList.add('menu-abierto');
+    burger.setAttribute('aria-expanded','true');burger.setAttribute('aria-label','Cerrar menú');
+    gsap.to(navEl,{yPercent:0,duration:.3});navOculta=false;
+    if(window.__lenis)__lenis.stop();
+    tlMenu.timeScale(1).play();
+    gsap.delayedCall(.6,function(){var f=$('.menu-lista a');if(f)f.focus({preventScroll:true})});
+  };
+  window.__menu.cerrar=function(){
+    if(!window.__menu.abierto)return;window.__menu.abierto=false;
+    burger.setAttribute('aria-expanded','false');burger.setAttribute('aria-label','Abrir menú');
+    if(window.__lenis)__lenis.start();
+    tlMenu.timeScale(1.6).reverse();
+  };
+  var vistas=$$('.menu-vista img'),vTxt=$('#vistaTxt'),vAct=0;
+  var textos=['La terraza a las 10:00','La mesa al aire libre','La piscina de noche','La terraza bajo techo','La mesa larga','La piscina de los peques','Las guirnaldas encendidas'];
+  $$('.menu-lista a').forEach(function(a){
+    var ver=function(){var i=+a.getAttribute('data-vista');if(i===vAct)return;var prev=vistas[vAct];vAct=i;
+      vistas.forEach(function(v){v.style.zIndex=0});prev.style.zIndex=1;
+      gsap.fromTo(vistas[i],{zIndex:2,clipPath:'inset(100% 0% 0% 0%)',scale:1.25},{clipPath:'inset(0% 0% 0% 0%)',scale:1,duration:.9,ease:'expo.out',overwrite:true});
+      vTxt.textContent=textos[i]};
+    a.addEventListener('pointerenter',ver);a.addEventListener('focus',ver);
+  });
 
-  /* ---------- 15. Intro: amanecer ---------- */
-  var heroTl=null;
-  if(intro&&raiz.classList.contains('intro-on')){
-    if(window.__lenis)window.__lenis.stop();
-    var horaIntro=$('.intro-hora b'),reloj={m:7*60};
-    var tl=gsap.timeline({onComplete:function(){cierraIntro()}});
-    tl.to(reloj,{m:10*60,duration:2.4,ease:'power2.inOut',onUpdate:function(){var m=Math.round(reloj.m/5)*5;horaIntro.textContent=String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0')}},0)
-      .from('.intro-sol',{y:'40vh',duration:2.4,ease:'power2.out'},0)
-      .to('.intro-cielo',{opacity:1,duration:2.2,ease:'power1.inOut'},0.1)
-      .to('.intro-hora',{color:'#13301f',duration:1.2},1.2)
-      .from('.intro-mascota',{scaleY:0,scaleX:.5,duration:1.1,ease:'elastic.out(1,.5)'},1.1)
-      .to('.intro-mascota .globo',{scale:1,duration:.5,ease:'back.out(3)'},1.8)
-      .to('.intro-mascota',{keyframes:{rotate:[0,-6,6,-4,3,0]},duration:1.3,ease:'sine.inOut'},1.8)
-      .to('.parpado',{scaleY:1,duration:.07,yoyo:true,repeat:1,ease:'none'},2.6)
-      .addLabel('salida',3.3)
-      .to('.intro-hora span',{opacity:0,duration:.3},'salida')
-      .to('.intro-mascota',{y:-40,scale:.2,opacity:0,duration:.6,ease:'power3.in'},'salida')
-      .to('.intro-montes .izq',{xPercent:-60,duration:1.1,ease:'power4.inOut'},'salida+=.15')
-      .to('.intro-montes .der',{xPercent:60,duration:1.1,ease:'power4.inOut'},'salida+=.15')
-      .to(intro,{yPercent:-100,duration:1.1,ease:'power4.inOut'},'salida+=.35')
-      .add(function(){heroTl=entradaHero()},'salida+=.6');
-    var saltar=function(){if(tl.time()<tl.labels.salida-.05){tl.seek(tl.labels.salida-.02);tl.play()}};
+  /* ---------- 15. Intro con PixiJS: la gota, el logo y el Quillay que saluda ---------- */
+  var heroIniciado=false;function heroUnaVez(){if(!heroIniciado){heroIniciado=true;entradaHero()}}
+
+  function introPixi(){
+    var PIXI=window.PIXI,F=PIXI.filters||{};
+    var Displacement=PIXI.DisplacementFilter||F.DisplacementFilter;
+    var app;
+    try{app=new PIXI.Application({resizeTo:window,backgroundAlpha:0,antialias:true,resolution:Math.min(window.devicePixelRatio||1,2),autoDensity:true,powerPreference:'high-performance'})}catch(e){return false}
+    if(!app.renderer||app.renderer.type!==PIXI.RENDERER_TYPE.WEBGL){try{app.destroy(true)}catch(e){}return false}
+    intro.insertBefore(app.view,intro.firstChild);
+    var W=function(){return app.screen.width},H=function(){return app.screen.height};
+    var pctEl=$('#introPct'),barra=$('.intro-carga i'),marcaEl=$('.intro-marca'),globo=$('.intro-globo');
+    var carga={v:0},terminado=false,tl=null;
+
+    function cerrar(){if(terminado)return;terminado=true;
+      try{app.destroy(true,{children:true,texture:true,baseTexture:true})}catch(e){}
+      cierraIntro();heroUnaVez();
+      gsap.fromTo('.marca-ico',{scale:.4,rotate:-25},{scale:1,rotate:0,duration:1,ease:'back.out(2.6)',clearProps:'transform'});
+    }
+    function saltar(){
+      if(!tl){cerrar();return}
+      if(tl.time()<tl.labels.salida-.05){tl.seek(tl.labels.salida-.02,false);tl.play()}
+    }
     $('.intro-saltar').addEventListener('click',saltar);
     intro.addEventListener('click',function(e){if(!e.target.closest('.intro-saltar'))saltar()});
     document.addEventListener('keydown',function(e){if(e.key==='Escape'&&intro.parentNode)saltar()});
+
+    // texturas generadas
+    function texGradiente(){var c=document.createElement('canvas');c.width=8;c.height=256;var x=c.getContext('2d');var g=x.createLinearGradient(0,0,0,256);
+      g.addColorStop(0,'#fdfbf2');g.addColorStop(.55,'#eaf5ee');g.addColorStop(1,'#cfe6df');x.fillStyle=g;x.fillRect(0,0,8,256);return PIXI.Texture.from(c)}
+    function texRuido(){var c=document.createElement('canvas');c.width=c.height=256;var x=c.getContext('2d');x.fillStyle='rgb(128,128,128)';x.fillRect(0,0,256,256);
+      for(var i=0;i<90;i++){var px=Math.random()*256,py=Math.random()*256,r=18+Math.random()*60,v=Math.random()<.5?40:215,g=x.createRadialGradient(px,py,0,px,py,r);
+        g.addColorStop(0,'rgba('+v+','+(255-v)+',128,.55)');g.addColorStop(1,'rgba(128,128,128,0)');x.fillStyle=g;x.beginPath();x.arc(px,py,r,0,7);x.fill()}
+      var t=PIXI.Texture.from(c);t.baseTexture.wrapMode=PIXI.WRAP_MODES.REPEAT;return t}
+    function texHoja(){var g=new PIXI.Graphics();g.beginFill(0xffffff);g.moveTo(0,9);g.bezierCurveTo(7,-1,23,-1,30,9);g.bezierCurveTo(23,19,7,19,0,9);g.endFill();
+      g.lineStyle(1.2,0x000000,.12);g.moveTo(2,9);g.lineTo(28,9);var t=app.renderer.generateTexture(g);g.destroy();return t}
+
+    // capas
+    var escena=new PIXI.Container();app.stage.addChild(escena);escena.filterArea=app.screen;
+    var fondo=new PIXI.Container();escena.addChild(fondo);fondo.filterArea=app.screen;
+    var bg=new PIXI.Sprite(texGradiente());fondo.addChild(bg);
+    var rayos=F.GodrayFilter?new F.GodrayFilter({angle:24,parallel:true,gain:.42,lacunarity:2.7,alpha:0,time:0}):null;
+    if(rayos)fondo.filters=[rayos];
+    var marco=new PIXI.Container();escena.addChild(marco);
+    var capaHojas=new PIXI.Container();app.stage.addChild(capaHojas);
+    var gota=new PIXI.Graphics();gota.beginFill(0x17b2c2).drawEllipse(0,0,7,10).endFill().beginFill(0xffffff,.8).drawCircle(-2,-3,2.2).endFill();gota.alpha=0;app.stage.addChild(gota);
+    var tHoja=texHoja(),hojas=[],soltar=false,tiempo=0;
+    var colores=[0x8bc34a,0xa6d64a,0xe4e35a,0x5c9e3f,0x7cb342,0xc5d94a];
+    function nuevaHoja(x,y,vx,vy,escala){var s=new PIXI.Sprite(tHoja);s.anchor.set(.5);s.x=x;s.y=y;s.tint=colores[Math.floor(Math.random()*colores.length)];
+      var e=escala||(.5+Math.random()*.7);s.scale.set(e);s.alpha=.95;capaHojas.addChild(s);
+      hojas.push({s:s,vx:vx,vy:vy,vr:(Math.random()-.5)*.12,f:Math.random()*6.28,vida:0});}
+
+    var L={};
+    function medidas(){var w=W(),h=H(),ph=Math.min(h*.58,560),pw=ph*600/900;if(pw>w*.74){pw=w*.74;ph=pw*1.5}
+      L.pw=pw;L.ph=ph;L.x=(w-pw)/2;L.y=Math.max(h*.06,h*.47-ph*.5);bg.width=w;bg.height=h}
+    medidas();
+    window.addEventListener('resize',function(){if(!terminado){bg.width=W();bg.height=H()}});
+
+    function animaCarga(p){gsap.to(carga,{v:p*100,duration:.4,overwrite:true,onUpdate:function(){pctEl.textContent=Math.round(carga.v);barra.style.transform='scaleX('+carga.v/100+')'}})}
+
+    PIXI.Assets.load(['assets/img/logo.jpg','assets/img/mascota.webp'],function(p){animaCarga(p)}).then(function(tx){
+      if(terminado)return;
+      animaCarga(1);
+      var tLogo=tx['assets/img/logo.jpg'],tArbol=tx['assets/img/mascota.webp'];
+      var poster=new PIXI.Sprite(tLogo);poster.width=L.pw;poster.height=L.ph;poster.alpha=0;marco.addChild(poster);
+      marco.position.set(L.x,L.y);
+      var mascara=new PIXI.Graphics();marco.addChild(mascara);poster.mask=mascara;
+      var revela={r:0},cx=L.pw/2,cy=L.ph*.42;
+      function pintaMascara(){mascara.clear().beginFill(0xffffff).drawCircle(cx,cy,revela.r).endFill()}
+      pintaMascara();
+      // agua que forma la imagen
+      var ruido=new PIXI.Sprite(texRuido());ruido.renderable=false;ruido.scale.set(2.2);app.stage.addChild(ruido);
+      var desplaza=new Displacement(ruido,0);
+      // disolución con borde dorado
+      var frag='varying vec2 vTextureCoord;uniform sampler2D uSampler;uniform float progreso;'+
+        'float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}'+
+        'float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1.,0.)),f.x),mix(h(i+vec2(0.,1.)),h(i+vec2(1.,1.)),f.x),f.y);}'+
+        'void main(){vec4 c=texture2D(uSampler,vTextureCoord);float r=n(vTextureCoord*vec2(9.,13.))*.65+n(vTextureCoord*vec2(40.,55.))*.35;'+
+        'float e=progreso*1.25-.12;float a=smoothstep(e,e+.035,r);float borde=(1.-a)*smoothstep(e-.06,e,r);'+
+        'vec3 oro=vec3(1.,.82,.35)*borde*c.a*1.8;gl_FragColor=vec4(c.rgb*a+oro,c.a*a+borde*c.a*.8);}';
+      var disolver=new PIXI.Filter(undefined,frag,{progreso:0});
+      poster.filters=[desplaza,disolver];
+      // el árbol como malla que se dobla con el viento
+      var arbol=new PIXI.SimplePlane(tArbol,16,16);var sA=L.pw/tArbol.width;
+      arbol.pivot.set(tArbol.width/2,tArbol.height);arbol.scale.set(sA);arbol.position.set(L.pw/2,L.ph*.0586+tArbol.height*sA);arbol.alpha=0;marco.addChild(arbol);
+      var buf=arbol.geometry.getBuffer('aVertexPosition'),orig=Float32Array.from(buf.data),TH=tArbol.height,TW=tArbol.width;
+      var viento={a:0},respira={v:0};
+      function parpado(cxp,cyp){var g=new PIXI.Graphics();var rw=TW*.04,rh=TH*.052;g.beginFill(0xb98242).drawEllipse(0,rh,rw,rh).endFill();g.position.set(cxp,cyp-rh);g.scale.y=0;g.baseX=cxp;g.ojoY=cyp;arbol.addChild(g);return g}
+      var pIzq=parpado(TW*.431,TH*.599),pDer=parpado(TW*.571,TH*.593);
+      // onda de choque
+      var cxG=L.x+cx,cyG=L.y+cy;
+      var onda=F.ShockwaveFilter?new F.ShockwaveFilter([cxG,cyG],{amplitude:26,wavelength:150,brightness:1.08,speed:540,radius:-1},0):null;
+      if(onda)escena.filters=[onda];
+
+      app.ticker.add(function(dt){
+        tiempo+=dt/60;
+        ruido.x+=.9*dt;ruido.y+=.5*dt;
+        if(rayos)rayos.time+=.012*dt;
+        if(arbol.alpha>0){
+          var d=buf.data;
+          for(var i=0;i<d.length;i+=2){var x=orig[i],y=orig[i+1],f=Math.pow(Math.max(0,1-y/TH),2.2);
+            var idle=Math.sin(tiempo*1.7+x*.006)*4;
+            d[i]=x+(viento.a*80+idle)*f;
+            d[i+1]=y+(Math.abs(viento.a)*12-respira.v*16)*f}
+          buf.update();
+          [pIzq,pDer].forEach(function(g){var f=Math.pow(Math.max(0,1-g.ojoY/TH),2.2);g.x=g.baseX+(viento.a*80+Math.sin(tiempo*1.7+g.baseX*.006)*4)*f});
+        }
+        if(soltar&&Math.random()<.06*dt)nuevaHoja(Math.random()*W(),-20,(Math.random()-.5)*.8,.6+Math.random()*.6,.35+Math.random()*.5);
+        for(var k=hojas.length-1;k>=0;k--){var o=hojas[k];o.vida+=dt;o.f+=.05*dt;
+          o.vy=Math.min(o.vy+.045*dt,2.2);o.vx*=.992;o.s.x+=(o.vx+Math.sin(o.f)*.9)*dt;o.s.y+=o.vy*dt;o.s.rotation+=o.vr*dt;
+          o.s.scale.y=o.s.scale.x*Math.abs(Math.cos(o.f*.7));
+          if(o.s.y>H()+40||o.vida>520){o.s.destroy();hojas.splice(k,1)}}
+      });
+
+      function impacto(){
+        gota.alpha=0;
+        if(onda)gsap.fromTo(onda,{time:0},{time:1.9,duration:1.9,ease:'none',onComplete:function(){escena.filters=null}});
+        for(var i=0;i<12;i++){var g=new PIXI.Graphics();g.beginFill(0x17b2c2,.85).drawCircle(0,0,1.6+Math.random()*2.4).endFill();g.position.set(cxG,cyG);app.stage.addChild(g);
+          var a=-Math.PI*Math.random(),v=40+Math.random()*90;
+          gsap.to(g,{x:cxG+Math.cos(a)*v,duration:.8,ease:'power1.out'});
+          gsap.to(g,{y:cyG+Math.sin(a)*v*.9,duration:.4,ease:'power2.out',yoyo:true,repeat:1});
+          gsap.to(g,{alpha:0,duration:.3,delay:.55,onComplete:function(){this.targets()[0].destroy()}});}
+      }
+      function estallido(){for(var i=0;i<26;i++)nuevaHoja(L.x+L.pw*(.15+Math.random()*.7),L.y+L.ph*(.1+Math.random()*.3),(Math.random()-.5)*7,-1.5-Math.random()*3.5);soltar=true}
+      function parpadea(){[pIzq,pDer].forEach(function(g){gsap.to(g.scale,{y:1,duration:.07,yoyo:true,repeat:1,ease:'none'})})}
+      function textos(){
+        marcaEl.style.top=(L.y+L.ph*.73)+'px';
+        gsap.set(marcaEl,{autoAlpha:1});
+        var b=$('b',marcaEl);
+        if(window.SplitText){var sp=SplitText.create(b,{type:'chars'});gsap.from(sp.chars,{yPercent:110,rotateX:-70,opacity:0,transformOrigin:'50% 100%',duration:.9,ease:'expo.out',stagger:.035})}
+        gsap.from($('span',marcaEl),{y:12,opacity:0,duration:.7,delay:.35,ease:'power3.out'});
+        gsap.to($('.linea-oro',marcaEl),{width:Math.min(160,L.pw*.6),duration:1,delay:.4,ease:'expo.out'});
+      }
+      function ubicaGlobo(){var gw=globo.offsetWidth||170;var x=Math.min(L.x+L.pw*.62,W()-gw-10);globo.style.left=Math.max(8,x)+'px';globo.style.top=Math.max(8,L.y+L.ph*.03-10)+'px'}
+      function vuelo(){
+        soltar=false;
+        var img=$('.marca-ico img'),r=img?img.getBoundingClientRect():{left:24,top:20,width:40,height:38};
+        var sT=r.width/TW,tx=r.left+r.width/2-L.x,ty=r.top+r.height-L.y;
+        gsap.to(viento,{a:0,duration:.3});
+        gsap.to(arbol.position,{x:tx,y:ty,duration:1.15,ease:'power4.inOut'});
+        gsap.to(arbol.scale,{x:sT,y:sT,duration:1.15,ease:'power4.inOut'});
+        gsap.to(arbol,{rotation:-.18,duration:.6,yoyo:true,repeat:1,ease:'sine.inOut'});
+        hojas.forEach(function(o){gsap.to(o.s,{alpha:0,duration:.5})});
+      }
+
+      tl=gsap.timeline({onComplete:cerrar});
+      tl.to('.intro-pct,.intro-carga',{autoAlpha:0,duration:.4},0)
+        .to(rayos||{},{alpha:.6,duration:2.2,ease:'power1.inOut'},0)
+        .fromTo(gota,{x:cxG,y:-30,alpha:1},{y:cyG,duration:.7,ease:'power2.in'},.1)
+        .fromTo(gota.scale,{y:1.4},{y:1,duration:.7,ease:'power2.in'},.1)
+        .add(impacto,.8)
+        .to(revela,{r:Math.hypot(L.pw,L.ph),duration:1.6,ease:'expo.out',onUpdate:pintaMascara},.8)
+        .fromTo(desplaza.scale,{x:170,y:170},{x:0,y:0,duration:2,ease:'power3.out'},.8)
+        .to(poster,{alpha:1,duration:.5},.8)
+        .addLabel('vida',2.4)
+        .set(arbol,{alpha:1},'vida')
+        .to(disolver.uniforms,{progreso:1,duration:1.3,ease:'power2.inOut'},'vida')
+        .add(estallido,'vida+=.25')
+        .add(textos,'vida+=.55')
+        .to(viento,{keyframes:{a:[0,.9,-.75,.55,-.3,.1,0]},duration:1.9,ease:'sine.inOut'},'vida+=.6')
+        .add(ubicaGlobo,'vida+=.75')
+        .fromTo(globo,{scale:0,autoAlpha:0},{scale:1,autoAlpha:1,duration:.6,ease:'back.out(2)'},'vida+=.8')
+        .add(parpadea,'vida+=1.9')
+        .to(respira,{keyframes:{v:[0,1,0]},duration:1.1,ease:'sine.inOut'},'vida+=1.95')
+        .addLabel('salida','vida+=2.6')
+        .to([globo,marcaEl],{autoAlpha:0,y:-16,duration:.4,ease:'power2.in'},'salida')
+        .add(vuelo,'salida')
+        .fromTo(intro,{clipPath:'inset(0% 0% 0% 0%)'},{clipPath:'inset(0% 0% 100% 0%)',duration:1.15,ease:'power4.inOut'},'salida+=.2')
+        .add(heroUnaVez,'salida+=.55')
+        .to({},{duration:.15});
+    }).catch(function(){cerrar()});
+    return true;
+  }
+
+  if(intro&&raiz.classList.contains('intro-on')){
+    if(window.__lenis)window.__lenis.stop();
+    var ok=false;try{ok=!!(window.PIXI&&introPixi())}catch(e){ok=false}
+    if(!ok){cierraIntro();heroUnaVez()}
   }else{
-    entradaHero();
+    heroUnaVez();
   }
   window.addEventListener('load',function(){ScrollTrigger.refresh()});
 })();
