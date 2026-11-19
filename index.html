@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Un día en El Quillay de Pirque | Piscina y terraza privada</title>
+<meta name="description" content="Arrienda El Quillay de Pirque por el día: piscina, piscina para peques y terraza full equipada para hasta 20 personas, de 10:00 a 20:00. Calcula tu reserva y escríbenos por WhatsApp.">
+<meta property="og:title" content="Un día en El Quillay de Pirque">
+<meta property="og:description" content="Piscina, piscina para peques y terraza full equipada, solo para tu grupo. De 10:00 a 20:00 en Pirque.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CL">
+<meta property="og:url" content="https://karendigital.github.io/quillay-v2/">
+<meta property="og:image" content="https://karendigital.github.io/quillay-v2/assets/img/portada.jpg">
+<link rel="canonical" href="https://karendigital.github.io/quillay-v2/">
+<meta name="theme-color" content="#13301f">
+<link rel="icon" type="image/png" href="assets/img/mascota-mini.png">
+<link rel="apple-touch-icon" href="assets/img/mascota-mini.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/img/mascota.webp">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"El Quillay de Pirque","description":"Arriendo por el día de piscina, piscina para niños y terraza full equipada en Pirque para hasta 20 personas.","url":"https://karendigital.github.io/quillay-v2/","image":"https://karendigital.github.io/quillay-v2/assets/img/portada.jpg","telephone":"+56993979291","priceRange":"$8.000 por persona","address":{"@type":"PostalAddress","addressLocality":"Pirque","addressRegion":"Región Metropolitana","addressCountry":"CL"},"openingHours":"Mo-Su 10:00-20:00","sameAs":["https://www.instagram.com/elquillaydepirque/"]}
+</script>
+<script>(function(d){var c='js',v=false;try{v=sessionStorage.getItem('quillay2Intro')==='1'}catch(e){}
+var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+c+=(v||rm)?' sin-intro':' intro-on';if(rm)c+=' calma';d.className=c})(document.documentElement)</script>
+<style>
+/* ================= TOKENS ================= */
+:root{
+  --tinta:#13301f;      /* verde bosque profundo: texto */
+  --hoja:#2f6a33;       /* hoja del quillay */
+  --flor:#e4e35a;       /* flor del quillay, lima amarilla */
+  --agua:#17b2c2;       /* agua de la piscina */
+  --agua-osc:#0b7f8c;
+  --papel:#ffffff;
+  --noche:#141d45;
+  --cielo-a:#9fdcf5;    /* cambia con el scroll */
+  --cielo-b:#eaf8fc;
+  --texto:#13301f;      /* cambia con el scroll */
+  --texto-suave:rgba(19,48,31,.72);
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --cuerpo:"Figtree","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+  --borde:clamp(20px,3vw,36px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+body{font-family:var(--cuerpo);font-size:clamp(16px,1.05vw,18px);line-height:1.6;color:var(--texto);background:var(--cielo-b);overflow-x:clip;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--flor);outline-offset:3px;border-radius:8px}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1;letter-spacing:-.02em}
+.envoltura{width:min(1240px,100% - 2.5rem);margin-inline:auto}
+
+/* ================= CIELO FIJO ================= */
+.cielo{position:fixed;inset:0;z-index:-2;background:linear-gradient(180deg,var(--cielo-a) 0%,var(--cielo-b) 78%)}
+.astro{position:fixed;left:0;top:0;z-index:-1;width:clamp(70px,9vw,130px);aspect-ratio:1;pointer-events:none;transform:translate(78vw,14vh);will-change:transform}
+.astro .sol{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 38% 36%,#fff6c8,#ffd257 55%,#ffb43a);box-shadow:0 0 70px 26px rgba(255,205,90,.45)}
+.astro .luna{position:absolute;inset:8%;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ffffff,#dfe6ff 60%,#b9c4f0);box-shadow:0 0 50px 16px rgba(200,212,255,.35);opacity:0}
+.astro .luna::after{content:"";position:absolute;width:22%;height:22%;left:56%;top:52%;border-radius:50%;background:rgba(150,160,210,.35);box-shadow:-28px -20px 0 -4px rgba(150,160,210,.25)}
+.estrellas{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0;background-image:radial-gradient(1.5px 1.5px at 12% 18%,#fff,transparent),radial-gradient(1px 1px at 28% 42%,#fff,transparent),radial-gradient(1.5px 1.5px at 44% 12%,#fff,transparent),radial-gradient(1px 1px at 63% 30%,#fff,transparent),radial-gradient(2px 2px at 78% 8%,#fff,transparent),radial-gradient(1px 1px at 88% 36%,#fff,transparent),radial-gradient(1px 1px at 7% 60%,#fff,transparent),radial-gradient(1.5px 1.5px at 52% 55%,#fff,transparent),radial-gradient(1px 1px at 93% 64%,#fff,transparent),radial-gradient(1px 1px at 35% 74%,#fff,transparent)}
+
+/* ================= NAV ================= */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:16px 0;transition:transform .4s ease}
+.nav .envoltura{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.marca{display:flex;align-items:center;gap:.6rem;text-decoration:none;font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:-.01em}
+.marca img{width:44px;height:auto;filter:drop-shadow(0 4px 6px rgba(0,0,0,.2))}
+.nav-der{display:flex;gap:.6rem;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;padding:1rem 1.6rem;border-radius:999px;font-family:var(--display);font-weight:700;font-size:1rem;text-decoration:none;border:0;cursor:pointer;position:relative;transition:background .25s,color .25s;transform:translate(var(--bx,0),var(--by,0))}
+.btn svg{width:20px;height:20px;flex:none}
+.btn-wa{background:var(--tinta);color:#fff}
+.btn-wa:hover{background:var(--hoja)}
+.btn-borde{background:rgba(255,255,255,.55);color:var(--tinta);box-shadow:inset 0 0 0 2px var(--tinta);backdrop-filter:blur(8px)}
+.btn-borde:hover{background:#fff}
+.btn-chico{padding:.7rem 1.1rem;font-size:.92rem}
+.btn-menu{background:rgba(255,255,255,.7);color:var(--tinta);backdrop-filter:blur(10px)}
+.btn-menu i{display:block;width:18px;height:2px;background:currentColor;box-shadow:0 6px 0 currentColor;transform:translateY(-3px)}
+
+/* ================= MENÚ (pantalla completa) ================= */
+.menu{position:fixed;inset:0;z-index:80;background:var(--tinta);color:#fff;display:none;clip-path:circle(0% at calc(100% - 60px) 40px)}
+.menu.abierto{display:flex}
+.menu .envoltura{display:flex;flex-direction:column;justify-content:center;min-height:100%;padding:6rem 0 3rem}
+.menu ol{list-style:none}
+.menu li{overflow:hidden}
+.menu a{display:flex;align-items:baseline;gap:1.2rem;text-decoration:none;padding:.35rem 0;font-family:var(--display);font-weight:700;font-size:clamp(2rem,6vw,4.4rem);line-height:1.05}
+.menu a small{font-family:var(--cuerpo);font-weight:600;font-size:clamp(.9rem,1.4vw,1.1rem);color:var(--flor);font-variant-numeric:tabular-nums;min-width:3.6em}
+.menu a:hover span{color:var(--flor)}
+.menu-cerrar{position:absolute;top:18px;right:20px;background:#fff;color:var(--tinta)}
+.menu-pie{margin-top:2.4rem;display:flex;flex-wrap:wrap;gap:1rem;color:rgba(255,255,255,.7)}
+
+/* ================= RELOJ (HUD) ================= */
+.reloj{position:fixed;left:18px;bottom:18px;z-index:40;display:flex;align-items:center;gap:.7rem;padding:.55rem 1rem .55rem .6rem;border-radius:999px;background:rgba(255,255,255,.78);color:var(--tinta);backdrop-filter:blur(12px);box-shadow:0 10px 30px -14px rgba(0,0,0,.4);font-variant-numeric:tabular-nums}
+.reloj svg{width:34px;height:34px}
+.reloj b{font-family:var(--display);font-size:1.15rem;display:block;line-height:1}
+.reloj small{display:block;font-size:.78rem;opacity:.75;line-height:1.2}
+.reloj .aguja,.reloj .horaria{transform-origin:20px 20px;transform-box:view-box}
+.reloj .horaria{transform:rotate(300deg)}
+.no-gsap .reloj,.calma .reloj{display:none}
+.no-gsap .noche,.calma .noche{background:linear-gradient(180deg,#5a4f8f 0%,#232b63 30%,#121a42 100%)}
+
+/* ================= HERO 10:00 ================= */
+.hora{position:relative;padding:clamp(5rem,12vw,9rem) 0}
+.hero{min-height:100svh;display:flex;align-items:center;padding-top:7rem;padding-bottom:0;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(2rem,5vw,5rem);align-items:center;position:relative;z-index:2;padding-bottom:clamp(7rem,14vw,11rem)}
+.hero-lugar{display:flex;align-items:center;gap:.5rem;font-weight:600;margin-bottom:1.2rem;color:var(--texto-suave)}
+.hero-lugar::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--agua);box-shadow:0 0 0 5px rgba(23,178,194,.22)}
+.hero-titulo{font-size:clamp(3.1rem,8.6vw,8.4rem);line-height:.9;font-weight:800;font-variation-settings:"wdth" 92;letter-spacing:-.035em}
+.hero-titulo .linea{display:block}
+.hero-titulo .linea:nth-child(2){padding-left:clamp(0rem,6vw,6rem);color:var(--agua-osc)}
+.hero-bajada{font-size:clamp(1.05rem,1.4vw,1.25rem);max-width:34em;margin:1.6rem 0 2.2rem;color:var(--texto-suave)}
+.acciones{display:flex;flex-wrap:wrap;gap:.8rem}
+.hero-foto{position:relative;aspect-ratio:3/4;max-height:74svh;width:100%;border-radius:999px 999px var(--borde) var(--borde);overflow:hidden;box-shadow:0 40px 80px -40px rgba(19,48,31,.6);background:#8fd0c7;justify-self:center}
+.hero-foto img,.hero-foto canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-foto canvas{opacity:0;transition:opacity .6s}
+.hero-foto.agua-lista canvas{opacity:1}
+.hero-foto figcaption{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);white-space:nowrap;background:rgba(255,255,255,.88);color:var(--tinta);padding:.45rem .9rem;border-radius:999px;font-size:.85rem;font-weight:600}
+.cordillera{position:absolute;left:0;right:0;bottom:-2px;width:100%;height:clamp(140px,22vw,300px);z-index:1;pointer-events:none}
+.cordillera .lejos{fill:#7fa7c8;opacity:.55}
+.cordillera .medio{fill:#5c8f7c;opacity:.75}
+.cordillera .cerca{fill:#2f6a33}
+
+/* ================= MANIFIESTO 11:00 ================= */
+.hora-marca{display:flex;align-items:baseline;gap:1rem;margin-bottom:clamp(1.6rem,3vw,2.6rem)}
+.hora-marca b{font-family:var(--display);font-weight:800;font-size:clamp(2.6rem,5vw,4.4rem);line-height:1;font-variant-numeric:tabular-nums;-webkit-text-stroke:2px var(--trazo,var(--texto));color:transparent;letter-spacing:-.02em}
+.hora-marca span{font-weight:600;font-size:1.05rem}
+.manifiesto{--trazo:#fff;background:var(--hoja);color:#fff;border-radius:var(--borde) var(--borde) 0 0;margin-top:-1px}
+.manifiesto p{font-family:var(--display);font-weight:600;font-size:clamp(1.8rem,4.2vw,3.7rem);line-height:1.12;letter-spacing:-.02em;max-width:22ch}
+.manifiesto .palabra{opacity:.18}
+.no-gsap .manifiesto .palabra,.calma .manifiesto .palabra{opacity:1}
+.manifiesto .dato-fila{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2.6rem}
+.manifiesto .dato{padding:.55rem 1rem;border-radius:999px;background:rgba(255,255,255,.12);font-weight:600}
+
+/* ================= ESPACIOS 12:00 (tarjetas apiladas) ================= */
+.espacios{--trazo:#fff;background:var(--hoja);color:#fff;padding-top:0}
+.espacios .hora-marca{padding-top:clamp(3rem,6vw,5rem)}
+.espacios h2{font-size:clamp(2.4rem,5.5vw,5rem);max-width:14ch;margin-bottom:clamp(2.4rem,5vw,4rem)}
+.pila{position:relative}
+.tarjeta{position:sticky;top:calc(11vh + var(--i,0) * 12px);height:min(76vh,660px);margin-bottom:9vh;background:var(--papel);color:var(--tinta);border-radius:var(--borde);overflow:hidden;display:grid;grid-template-columns:1.25fr 1fr;box-shadow:0 -20px 50px -30px rgba(0,0,0,.45);transform-origin:50% 0}
+.tarjeta:last-child{margin-bottom:0}
+.tarjeta-fotos{position:relative;display:grid;gap:6px;background:#dfe9e3}
+.tarjeta-fotos.dos{grid-template-columns:1fr 1fr}
+.tarjeta-fotos img{width:100%;height:100%;object-fit:cover;min-height:0}
+.tarjeta-txt{padding:clamp(1.6rem,3.4vw,3.2rem);display:flex;flex-direction:column;justify-content:space-between;gap:1.4rem}
+.tarjeta h3{font-size:clamp(2rem,3.6vw,3.4rem);font-weight:800;font-variation-settings:"wdth" 88}
+.tarjeta p{margin-top:1rem;color:#3b5546;font-size:1.06rem;max-width:30em}
+.tarjeta ul{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem}
+.tarjeta li{padding:.45rem .85rem;border-radius:999px;background:#eef5ef;font-weight:600;font-size:.9rem;color:var(--hoja)}
+.tarjeta.agua li{background:#e2f6f8;color:var(--agua-osc)}
+.tarjeta .icono{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;font-size:1.8rem;background:var(--flor)}
+
+/* ================= SOBREMESA 14:00 (galería arrastrable) ================= */
+.sobremesa{overflow:hidden}
+.sobremesa-cab{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1.2rem;margin-bottom:2.4rem}
+.sobremesa h2{font-size:clamp(2.4rem,5.5vw,5rem);max-width:13ch}
+.sobremesa-cab p{max-width:26em;color:var(--texto-suave)}
+.cinta-galeria{position:relative;cursor:grab;touch-action:pan-y}
+.cinta-galeria:active{cursor:grabbing}
+.pista{display:flex;gap:clamp(12px,1.6vw,22px);width:max-content;padding:0 max(1.25rem,calc((100vw - 1240px)/2));will-change:transform}
+.no-gsap .cinta-galeria,.calma .cinta-galeria{overflow-x:auto;scroll-snap-type:x mandatory}
+.foto{flex:none;height:clamp(300px,56vh,540px);aspect-ratio:3/4;position:relative;border-radius:22px;overflow:hidden;scroll-snap-align:center;background:#cfe3d6;transform-origin:50% 100%}
+.foto.ancha{aspect-ratio:4/3}
+.foto img{width:100%;height:100%;object-fit:cover;pointer-events:none;user-select:none;-webkit-user-drag:none}
+.foto figcaption{position:absolute;left:12px;bottom:12px;right:12px;color:#fff;font-weight:600;font-size:.95rem;text-shadow:0 1px 8px rgba(0,0,0,.55)}
+.foto::after{content:"";position:absolute;inset:auto 0 0 0;height:40%;background:linear-gradient(transparent,rgba(0,0,0,.45));pointer-events:none}
+.foto figcaption{z-index:1}
+.arrastra{display:flex;align-items:center;gap:.6rem;margin-top:1.4rem;font-weight:600;color:var(--texto-suave)}
+.arrastra i{width:60px;height:3px;border-radius:3px;background:currentColor;opacity:.35;position:relative;overflow:hidden}
+.arrastra i::after{content:"";position:absolute;inset:0;width:var(--avance,10%);background:var(--texto);opacity:1}
+
+/* ================= CELEBRACIONES 16:00 ================= */
+.celebra h2{font-size:clamp(2.4rem,5.5vw,5rem);max-width:12ch;margin-bottom:2.4rem}
+.lista-cele{list-style:none;border-top:2px solid currentColor}
+.lista-cele li{border-bottom:2px solid currentColor;position:relative}
+.lista-cele a{display:grid;grid-template-columns:1fr 1fr;gap:1rem 2rem;align-items:center;padding:clamp(1.2rem,2.4vw,2rem) 0;text-decoration:none}
+.lista-cele strong{font-family:var(--display);font-weight:700;font-size:clamp(1.9rem,4.4vw,3.8rem);line-height:1;letter-spacing:-.02em;transition:transform .5s cubic-bezier(.2,.8,.2,1),font-variation-settings .5s;font-variation-settings:"wdth" 100,"wght" 700}
+.lista-cele a:hover strong,.lista-cele a:focus-visible strong{transform:translateX(14px);font-variation-settings:"wdth" 80,"wght" 800}
+.lista-cele span{color:var(--texto-suave);max-width:30em}
+.lista-cele .mini{display:none}
+.flotante-foto{position:fixed;left:0;top:0;z-index:30;width:clamp(220px,22vw,320px);aspect-ratio:4/5;border-radius:22px;overflow:hidden;pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.6);box-shadow:0 30px 60px -20px rgba(0,0,0,.5)}
+.flotante-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .25s}
+.flotante-foto img.ver{opacity:1}
+
+/* ================= RESERVA 18:00 (calculadora) ================= */
+.reserva h2{font-size:clamp(2.4rem,5.5vw,5rem);max-width:12ch;margin-bottom:1rem}
+.reserva-intro{max-width:34em;color:var(--texto-suave);margin-bottom:2.6rem}
+.calc{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(1rem,2vw,1.6rem);align-items:stretch}
+.calc-panel{background:var(--papel);color:var(--tinta);border-radius:var(--borde);padding:clamp(1.5rem,3vw,2.6rem);box-shadow:0 30px 60px -36px rgba(0,0,0,.5)}
+.campo{margin-bottom:2rem}
+.campo label{display:flex;justify-content:space-between;align-items:baseline;font-weight:600;margin-bottom:.9rem}
+.campo output{font-family:var(--display);font-weight:800;font-size:clamp(2.6rem,5vw,4rem);line-height:1;color:var(--agua-osc);font-variant-numeric:tabular-nums}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:12px;border-radius:12px;background:linear-gradient(90deg,var(--agua) var(--lleno,60%),#e3eee8 var(--lleno,60%));outline-offset:6px;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:34px;height:34px;border-radius:50%;background:var(--tinta);border:5px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:var(--tinta);border:5px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.marcas-rango{display:flex;justify-content:space-between;font-size:.82rem;color:#5d7466;margin-top:.5rem}
+input[type=date]{width:100%;font:inherit;font-weight:600;padding:.9rem 1rem;border-radius:16px;border:2px solid #d5e3da;background:#f6faf7;color:var(--tinta)}
+.condiciones{list-style:none;display:grid;gap:.5rem;font-size:.95rem;color:#3b5546}
+.condiciones li{display:flex;gap:.6rem}
+.condiciones li::before{content:"";flex:none;width:8px;height:8px;margin-top:.55em;border-radius:50%;background:var(--agua)}
+.boleta{background:var(--flor);color:var(--tinta);border-radius:var(--borde);padding:clamp(1.5rem,3vw,2.6rem);display:flex;flex-direction:column;position:relative;-webkit-mask:radial-gradient(circle 12px at 0 62%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 12px at 100% 62%,transparent 98%,#000) right/51% 100% no-repeat;mask:radial-gradient(circle 12px at 0 62%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 12px at 100% 62%,transparent 98%,#000) right/51% 100% no-repeat}
+.boleta h3{font-size:1.4rem;margin-bottom:1.2rem}
+.boleta dl{display:grid;grid-template-columns:1fr auto;gap:.55rem 1rem;font-variant-numeric:tabular-nums}
+.boleta dt{color:#3d4a1b}
+.boleta dd{font-weight:700;text-align:right}
+.boleta .total{margin:1.4rem 0;padding:1.2rem 0;border-block:2px dashed rgba(19,48,31,.35)}
+.boleta .total small{display:block;font-weight:600}
+.boleta .total b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(2.8rem,5.6vw,4.6rem);line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.boleta .nota{font-size:.88rem;color:#3d4a1b;min-height:1.4em}
+.boleta .btn{margin-top:auto;width:100%}
+
+/* ================= NOCHE 20:00 ================= */
+.noche{--trazo:#f4f6ff;color:#f4f6ff;padding-bottom:3rem;overflow:hidden}
+.guirnalda{position:absolute;left:0;right:0;top:0;width:100%;height:150px;pointer-events:none}
+.guirnalda path{fill:none;stroke:#2a2f52;stroke-width:2}
+.guirnalda circle{fill:#4a4f74;transition:fill .3s}
+.guirnalda circle.on{fill:#ffe6a3;filter:url(#brillo)}
+#luciernagas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.noche-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:center;position:relative;z-index:1;padding-top:3rem}
+.noche h2{font-size:clamp(2.8rem,7vw,6.4rem);font-weight:800;line-height:.92;letter-spacing:-.035em;font-variation-settings:"wdth" 90}
+.noche p.bajada{color:rgba(244,246,255,.78);max-width:30em;margin:1.4rem 0 2rem}
+.noche .btn-wa{background:var(--flor);color:var(--tinta)}
+.noche .btn-wa:hover{background:#fff}
+.noche .btn-borde{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.7)}
+.fotos-noche{position:relative;height:clamp(380px,48vw,560px)}
+.fotos-noche>img{position:absolute;border-radius:22px;object-fit:cover;box-shadow:0 30px 60px -20px rgba(0,0,0,.7);border:6px solid rgba(255,255,255,.9)}
+.fotos-noche>img:nth-child(1){width:62%;height:78%;left:0;top:0;transform:rotate(-4deg)}
+.fotos-noche>img:nth-child(2){width:56%;height:62%;right:0;bottom:0;transform:rotate(5deg)}
+.mascota-noche{position:absolute;right:-2%;top:-14%;width:clamp(110px,13vw,170px);z-index:2;transform-origin:50% 100%}
+.mascota-noche img{width:100%;filter:drop-shadow(0 12px 20px rgba(0,0,0,.5))}
+.mascota-noche span{position:absolute;right:70%;top:-8%;background:#fff;color:var(--tinta);font-family:var(--display);font-weight:700;padding:.5rem .8rem;border-radius:16px 16px 4px 16px;white-space:nowrap;font-size:.95rem}
+.contacto{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:clamp(4rem,8vw,6rem);position:relative;z-index:1}
+.contacto a,.contacto div{display:block;text-decoration:none;padding:1.4rem;border-radius:22px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16)}
+.contacto a:hover{background:rgba(255,255,255,.14)}
+.contacto small{display:block;color:var(--flor);font-weight:600;margin-bottom:.3rem}
+.contacto b{font-family:var(--display);font-size:1.3rem}
+.contacto em{display:block;font-style:normal;color:rgba(244,246,255,.7);font-size:.9rem;margin-top:.3rem}
+.pie{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;margin-top:3rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.16);font-size:.88rem;color:rgba(244,246,255,.6);position:relative;z-index:1}
+.pie a{color:rgba(244,246,255,.85)}
+
+/* ================= CURSOR ================= */
+.cursor{position:fixed;left:0;top:0;z-index:90;pointer-events:none;display:none}
+.cursor-punto{position:fixed;left:-4px;top:-4px;width:8px;height:8px;border-radius:50%;background:var(--tinta);mix-blend-mode:normal}
+.cursor-aro{position:fixed;left:-22px;top:-22px;width:44px;height:44px;border-radius:50%;border:2px solid var(--tinta);display:grid;place-items:center;font-weight:700;font-size:.72rem;color:#fff;transition:width .3s,height .3s,left .3s,top .3s,background .3s,border-color .3s}
+.cursor-aro.grande{width:92px;height:92px;left:-46px;top:-46px;background:var(--tinta);border-color:var(--tinta)}
+.cursor-aro.enlace{width:64px;height:64px;left:-32px;top:-32px;background:rgba(23,178,194,.18);border-color:var(--agua)}
+.es-noche .cursor-punto{background:#fff}
+.es-noche .cursor-aro{border-color:#fff}
+
+/* ================= VISOR ================= */
+.visor{position:fixed;inset:0;z-index:95;background:rgba(10,24,16,.92);display:none;align-items:center;justify-content:center;flex-direction:column;gap:1rem;padding:1.5rem}
+.visor.abierto{display:flex}
+.visor img{max-width:min(92vw,960px);max-height:80vh;border-radius:20px;object-fit:contain}
+.visor p{color:#fff;font-weight:600;text-align:center}
+.visor button{position:absolute;width:52px;height:52px;border-radius:50%;border:0;background:#fff;color:var(--tinta);font-size:1.5rem;font-weight:800;cursor:pointer}
+.visor .cerrar{top:18px;right:18px}.visor .ant{left:18px;top:50%}.visor .sig{right:18px;top:50%}
+@media (max-width:640px){.visor .ant,.visor .sig{top:auto;bottom:18px}}
+
+/* ================= INTRO: AMANECER ================= */
+#intro{display:none}
+.js.intro-on #intro{position:fixed;inset:0;z-index:100;display:block;overflow:hidden;background:linear-gradient(180deg,#0f1638,#2a2a5c);animation:introSeguro .6s ease 9s forwards}
+.intro-on body{overflow:hidden;animation:desbloquea 0s linear 9s forwards}
+@keyframes introSeguro{to{opacity:0;visibility:hidden}}
+@keyframes desbloquea{to{overflow:visible}}
+.intro-cielo{position:absolute;inset:0;background:linear-gradient(180deg,#9fdcf5,#ffe2b8);opacity:0}
+.intro-sol{position:absolute;left:50%;top:62%;width:clamp(120px,18vw,220px);aspect-ratio:1;margin-left:calc(clamp(120px,18vw,220px) / -2);border-radius:50%;background:radial-gradient(circle at 40% 38%,#fff6c8,#ffd257 55%,#ffb43a);box-shadow:0 0 120px 40px rgba(255,200,90,.5)}
+.intro-montes{position:absolute;left:0;right:0;bottom:0;width:100%;height:46vh}
+.intro-montes .izq,.intro-montes .der{will-change:transform}
+.intro-hora{position:absolute;left:50%;top:16%;transform:translateX(-50%);text-align:center;color:#fff;font-family:var(--display)}
+.intro-hora b{display:block;font-size:clamp(3.4rem,10vw,7rem);font-weight:800;font-variant-numeric:tabular-nums;line-height:1;letter-spacing:-.03em}
+.intro-hora span{font-weight:600;font-size:1.05rem;opacity:.85}
+.intro-mascota{position:absolute;left:50%;bottom:24vh;width:clamp(150px,22vw,250px);margin-left:calc(clamp(150px,22vw,250px) / -2);transform-origin:50% 100%}
+.intro-mascota img{width:100%;filter:drop-shadow(0 16px 20px rgba(0,0,0,.35))}
+.intro-mascota .globo{position:absolute;left:78%;top:4%;background:#fff;color:var(--tinta);font-family:var(--display);font-weight:800;font-size:clamp(1rem,2.4vw,1.25rem);padding:.6rem 1rem;border-radius:18px 18px 18px 4px;white-space:nowrap;transform:scale(0);transform-origin:0 100%}
+.parpado{position:absolute;border-radius:50%;background:radial-gradient(circle at 50% 30%,#d29b52,#a9712f);transform:scaleY(0);transform-origin:50% 0}
+.parpado.izq{left:39.4%;top:55.2%;width:7.4%;height:9.4%}
+.parpado.der{left:53.4%;top:54.6%;width:7.4%;height:9.4%}
+.intro-saltar{position:absolute;right:18px;bottom:18px;border:0;border-radius:999px;padding:.6rem 1.1rem;background:rgba(255,255,255,.85);color:var(--tinta);font-weight:700;cursor:pointer;z-index:2}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:960px){
+  .hero-grid,.noche-grid,.calc{grid-template-columns:1fr}
+  .hero-foto{max-width:420px;max-height:none}
+  .tarjeta{grid-template-columns:1fr;grid-template-rows:44% 1fr;height:min(82svh,700px);top:calc(9svh + var(--i,0) * 10px)}
+  .tarjeta-txt{padding:1.4rem 1.4rem 1.6rem;gap:1rem}
+  .tarjeta p{font-size:1rem;margin-top:.6rem}
+  .tarjeta .icono{display:none}
+  .lista-cele a{grid-template-columns:1fr auto}
+  .lista-cele span{grid-column:1/-1}
+  .lista-cele .mini{display:block;grid-row:1;grid-column:2;width:84px;height:84px;border-radius:16px;object-fit:cover}
+  .contacto{grid-template-columns:1fr}
+  .mascota-noche{right:2%;top:-18%}
+}
+@media (max-width:560px){
+  .nav .btn-wa span{display:none}
+  .nav .btn-wa{padding:.7rem}
+  .marca span{font-size:1rem}
+  .acciones .btn{width:100%}
+  .reloj{left:12px;bottom:12px;padding:.45rem .8rem .45rem .5rem}
+  .reloj svg{width:28px;height:28px}
+  .tarjeta h3{font-size:1.9rem}
+  .tarjeta ul{gap:.35rem}
+  .tarjeta li{font-size:.8rem;padding:.35rem .7rem}
+}
+@media (hover:none),(pointer:coarse){.cursor{display:none!important}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ======= INTRO: amanecer en El Quillay ======= -->
+<div id="intro" aria-hidden="true">
+  <div class="intro-cielo"></div>
+  <div class="intro-sol"></div>
+  <div class="intro-hora"><b>07:00</b><span>Amanece en Pirque</span></div>
+  <div class="intro-mascota">
+    <img src="assets/img/mascota.webp" alt="" width="640" height="605">
+    <i class="parpado izq"></i><i class="parpado der"></i>
+    <div class="globo">¡Buenos días! 👋</div>
+  </div>
+  <svg class="intro-montes" viewBox="0 0 1440 460" preserveAspectRatio="none">
+    <g class="izq"><path fill="#2b3f6e" d="M0 460V170l120-60 110 50 120-110 140 120 130-40 100 70v260z"/><path fill="#2f6a33" d="M0 460V300l160-40 170 50 160-30 230 60v120z"/></g>
+    <g class="der"><path fill="#2b3f6e" d="M1440 460V150l-140-50-120 80-150-100-140 120-130-10-140 80v190z"/><path fill="#2f6a33" d="M1440 460V280l-190-30-160 50-200-20-170 60v120z"/></g>
+  </svg>
+  <button class="intro-saltar" type="button">Saltar</button>
+</div>
+
+<div class="cielo" aria-hidden="true"></div>
+<div class="estrellas" aria-hidden="true"></div>
+<div class="astro" aria-hidden="true"><i class="sol"></i><i class="luna"></i></div>
+
+<!-- ======= NAV ======= -->
+<header class="nav">
+  <div class="envoltura">
+    <a class="marca" href="#llegada"><img src="assets/img/mascota-mini.png" alt="" width="44" height="42"><span>El Quillay de Pirque</span></a>
+    <div class="nav-der">
+      <a class="btn btn-wa btn-chico iman" data-wa href="https://wa.me/56993979291" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.7-5.2A8.5 8.5 0 1 1 21 11.5z"/></svg>
+        <span>Reservar</span>
+      </a>
+      <button class="btn btn-menu btn-chico" id="abrirMenu" aria-expanded="false" aria-controls="menu"><i aria-hidden="true"></i>Menú</button>
+    </div>
+  </div>
+</header>
+
+<nav class="menu" id="menu" aria-label="Secciones">
+  <button class="btn btn-chico menu-cerrar" id="cerrarMenu">Cerrar</button>
+  <div class="envoltura">
+    <ol>
+      <li><a href="#llegada"><small>10:00</small><span>Llegada</span></a></li>
+      <li><a href="#bienvenida"><small>11:00</small><span>Bienvenida</span></a></li>
+      <li><a href="#espacios"><small>12:00</small><span>El espacio</span></a></li>
+      <li><a href="#sobremesa"><small>14:00</small><span>Fotos</span></a></li>
+      <li><a href="#celebraciones"><small>16:00</small><span>Celebraciones</span></a></li>
+      <li><a href="#reserva"><small>18:00</small><span>Calcula tu reserva</span></a></li>
+      <li><a href="#noche"><small>20:00</small><span>Contacto</span></a></li>
+    </ol>
+    <div class="menu-pie"><span>+56 9 9397 9291</span><span>@elquillaydepirque</span><span>Pirque, Región Metropolitana</span></div>
+  </div>
+</nav>
+
+<!-- ======= RELOJ DEL DÍA ======= -->
+<div class="reloj" aria-hidden="true">
+  <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#fff" stroke="currentColor" stroke-width="2.5"/><line class="horaria" x1="20" y1="20" x2="20" y2="10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><line class="aguja" x1="20" y1="20" x2="20" y2="6" stroke="#17b2c2" stroke-width="2.5" stroke-linecap="round"/><circle cx="20" cy="20" r="2.5" fill="currentColor"/></svg>
+  <div><b id="relojHora">10:00</b><small id="relojMomento">Llegada</small></div>
+</div>
+
+<main>
+
+<!-- ======= 10:00 LLEGADA ======= -->
+<section class="hora hero" id="llegada" data-momento="Llegada">
+  <div class="envoltura hero-grid">
+    <div>
+      <p class="hero-lugar">Pirque, Región Metropolitana</p>
+      <h1 class="hero-titulo"><span class="linea">Un día entero</span><span class="linea">de piscina</span><span class="linea">solo para los tuyos</span></h1>
+      <p class="hero-bajada">Piscina, piscina para los peques y terraza full equipada para hasta 20 personas. Abrimos a las 10:00 y el lugar es tuyo hasta las 20:00.</p>
+      <div class="acciones">
+        <a class="btn btn-wa iman" data-wa href="https://wa.me/56993979291" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.7-5.2A8.5 8.5 0 1 1 21 11.5z"/></svg>
+          Reservar por WhatsApp
+        </a>
+        <a class="btn btn-borde iman" href="#reserva">Calcular mi reserva</a>
+      </div>
+    </div>
+    <figure class="hero-foto" data-cursor="💧">
+      <img src="assets/img/portada.jpg" alt="Deck con parrilla y la piscina al fondo, en El Quillay de Pirque" fetchpriority="high">
+      <canvas id="agua" aria-hidden="true"></canvas>
+      <figcaption>La terraza a las 10:00</figcaption>
+    </figure>
+  </div>
+  <svg class="cordillera" viewBox="0 0 1440 300" preserveAspectRatio="none" aria-hidden="true">
+    <path class="lejos" d="M0 300V120l90-40 120 60 150-110 160 100 120-50 170 90 150-120 160 110 140-40 180 80v120z"/>
+    <path class="medio" d="M0 300V190l140-30 160 50 180-70 170 60 200-40 160 50 190-60 240 70v70z"/>
+    <path class="cerca" d="M0 300V250c120-30 260-40 400-20s300 30 460 0 380-30 580 10v60z"/>
+  </svg>
+</section>
+
+<!-- ======= 11:00 BIENVENIDA ======= -->
+<section class="hora manifiesto" id="bienvenida" data-momento="Bienvenida">
+  <div class="envoltura">
+    <div class="hora-marca"><b>11:00</b><span>Bienvenida</span></div>
+    <p id="manifiesto">Llegas, dejas las cosas en la terraza y los niños ya están en el agua. El resto del día es tuyo: la parrilla encendida, una sobremesa larga y la piscina iluminada cuando cae la tarde.</p>
+    <div class="dato-fila">
+      <span class="dato">Hasta 20 personas</span>
+      <span class="dato">De 10:00 a 20:00</span>
+      <span class="dato">$8.000 por persona</span>
+      <span class="dato">Solo para tu grupo</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======= 12:00 EL ESPACIO ======= -->
+<section class="hora espacios" id="espacios" data-momento="El espacio">
+  <div class="envoltura">
+    <div class="hora-marca"><b>12:00</b><span>El espacio</span></div>
+    <h2>Todo lo que vas a encontrar</h2>
+    <div class="pila">
+      <article class="tarjeta agua" style="--i:0">
+        <div class="tarjeta-fotos dos"><img loading="lazy" src="assets/img/piscina-noche.jpg" alt="Piscina iluminada de noche"><img loading="lazy" src="assets/img/piscina.jpg" alt="Piscina con luces de guirnalda"></div>
+        <div class="tarjeta-txt">
+          <div><div class="icono" aria-hidden="true">🏊</div><h3>Piscina</h3><p>Para refrescarse y jugar todo el día. Cuando cae la tarde se ilumina y las guirnaldas se encienden.</p></div>
+          <ul><li>Uso exclusivo de tu grupo</li><li>Iluminada</li><li>Pasto alrededor</li></ul>
+        </div>
+      </article>
+      <article class="tarjeta agua" style="--i:1">
+        <div class="tarjeta-fotos"><img loading="lazy" src="assets/img/piscina-peques.jpg" alt="Piscina para niños sobre el pasto" style="object-position:50% 65%"></div>
+        <div class="tarjeta-txt">
+          <div><div class="icono" aria-hidden="true">🧒</div><h3>Para los peques</h3><p>Una piscina chica para que los más pequeños también disfruten del agua mientras los grandes conversan.</p></div>
+          <ul><li>Piscina pequeña</li><li>Sobre pasto</li><li>A la vista de la terraza</li></ul>
+        </div>
+      </article>
+      <article class="tarjeta" style="--i:2">
+        <div class="tarjeta-fotos dos"><img loading="lazy" src="assets/img/terraza-techada.jpg" alt="Terraza techada con comedor, cocina y refrigerador"><img loading="lazy" src="assets/img/mesa-larga.jpg" alt="Mesa larga de madera para todo el grupo"></div>
+        <div class="tarjeta-txt">
+          <div><div class="icono" aria-hidden="true">⛱️</div><h3>Terraza full equipada</h3><p>Bajo techo, con una mesa larga para todo el grupo, cocina a gas, horno, microondas y refrigerador.</p></div>
+          <ul><li>Mesa para 20</li><li>Cocina</li><li>Refrigerador</li><li>Sombra</li></ul>
+        </div>
+      </article>
+      <article class="tarjeta" style="--i:3">
+        <div class="tarjeta-fotos dos"><img loading="lazy" src="assets/img/parrilla-deck.jpg" alt="Deck de madera con parrilla y mesa alta"><img loading="lazy" src="assets/img/portada.jpg" alt="Deck con vista a la piscina entre árboles"></div>
+        <div class="tarjeta-txt">
+          <div><div class="icono" aria-hidden="true">🔥</div><h3>Parrilla y deck</h3><p>Un deck de madera entre naranjos, con parrilla y mesa alta para el asado mirando la piscina.</p></div>
+          <ul><li>Parrilla</li><li>Mesa alta</li><li>Lavaloza exterior</li></ul>
+        </div>
+      </article>
+      <article class="tarjeta" style="--i:4">
+        <div class="tarjeta-fotos dos"><img loading="lazy" src="assets/img/loza-platos.jpg" alt="Platos, cubiertos y jarros"><img loading="lazy" src="assets/img/bano.jpg" alt="Baño con WC y ventana"></div>
+        <div class="tarjeta-txt">
+          <div><div class="icono" aria-hidden="true">🍽️</div><h3>Vajilla y baño</h3><p>Platos, vasos, tazas, cubiertos, jarros y hervidor para todos. El baño está a pasos de la terraza.</p></div>
+          <ul><li>Vajilla completa</li><li>Hervidor</li><li>Baño</li></ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ======= 14:00 SOBREMESA (fotos) ======= -->
+<section class="hora sobremesa" id="sobremesa" data-momento="Sobremesa">
+  <div class="envoltura">
+    <div class="hora-marca"><b>14:00</b><span>Sobremesa</span></div>
+    <div class="sobremesa-cab">
+      <h2>Date una vuelta antes de venir</h2>
+      <p>Arrastra las fotos hacia el lado para recorrer el lugar. Toca una para verla en grande.</p>
+    </div>
+  </div>
+  <div class="cinta-galeria" data-cursor="Arrastra">
+    <div class="pista" id="pista">
+      <figure class="foto"><img src="assets/img/portada.jpg" alt="Deck con parrilla y vista a la piscina" loading="lazy"><figcaption>Deck con vista a la piscina</figcaption></figure>
+      <figure class="foto ancha"><img src="assets/img/terraza-techada.jpg" alt="Terraza techada con comedor" loading="lazy"><figcaption>Terraza bajo techo</figcaption></figure>
+      <figure class="foto"><img src="assets/img/mesa-larga.jpg" alt="Mesa larga de madera" loading="lazy"><figcaption>La mesa para todo el grupo</figcaption></figure>
+      <figure class="foto"><img src="assets/img/piscina-peques.jpg" alt="Piscina para los peques" loading="lazy"><figcaption>Piscina para los peques</figcaption></figure>
+      <figure class="foto"><img src="assets/img/mesa-familia.jpg" alt="Mesa al aire libre con mantel" loading="lazy"><figcaption>Mesa al aire libre</figcaption></figure>
+      <figure class="foto"><img src="assets/img/parrilla-deck.jpg" alt="Deck con parrilla" loading="lazy"><figcaption>Parrilla entre naranjos</figcaption></figure>
+      <figure class="foto"><img src="assets/img/cocina.jpg" alt="Cocina a gas con horno" loading="lazy"><figcaption>Cocina</figcaption></figure>
+      <figure class="foto"><img src="assets/img/loza-vasos.jpg" alt="Vasos, tazas y hervidor" loading="lazy"><figcaption>Vasos y tazas</figcaption></figure>
+      <figure class="foto"><img src="assets/img/loza-platos.jpg" alt="Platos, cubiertos y jarros" loading="lazy"><figcaption>Platos y cubiertos</figcaption></figure>
+      <figure class="foto"><img src="assets/img/utensilios.jpg" alt="Microondas, hervidor y utensilios" loading="lazy"><figcaption>Microondas y utensilios</figcaption></figure>
+      <figure class="foto"><img src="assets/img/lavaplatos.jpg" alt="Lavaloza exterior de madera" loading="lazy"><figcaption>Lavaloza exterior</figcaption></figure>
+      <figure class="foto"><img src="assets/img/bano-2.jpg" alt="Lavamanos con mueble de madera" loading="lazy"><figcaption>Baño</figcaption></figure>
+      <figure class="foto"><img src="assets/img/piscina-noche.jpg" alt="Piscina iluminada" loading="lazy"><figcaption>La piscina de noche</figcaption></figure>
+      <figure class="foto ancha"><img src="assets/img/piscina.jpg" alt="Piscina con guirnaldas encendidas" loading="lazy"><figcaption>Guirnaldas encendidas</figcaption></figure>
+    </div>
+  </div>
+  <div class="envoltura"><p class="arrastra"><i style="--avance:10%" id="avance"></i><span>Arrastra para ver más</span></p></div>
+</section>
+
+<!-- ======= 16:00 CELEBRACIONES ======= -->
+<section class="hora celebra" id="celebraciones" data-momento="Celebraciones">
+  <div class="envoltura">
+    <div class="hora-marca"><b>16:00</b><span>Celebraciones</span></div>
+    <h2>¿Qué vienes a celebrar?</h2>
+    <ul class="lista-cele">
+      <li><a data-wa-txt="Hola, quiero cotizar un cumpleaños en El Quillay de Pirque" data-foto="assets/img/piscina.jpg" href="https://wa.me/56993979291" target="_blank" rel="noopener"><strong>Cumpleaños</strong><img class="mini" src="assets/img/piscina.jpg" alt="" loading="lazy"><span>Piscina, torta en la mesa larga y nadie que te apure. Para grupos de hasta 20 personas.</span></a></li>
+      <li><a data-wa-txt="Hola, quiero cotizar un bautismo en El Quillay de Pirque" data-foto="assets/img/mesa-larga.jpg" href="https://wa.me/56993979291" target="_blank" rel="noopener"><strong>Bautismos</strong><img class="mini" src="assets/img/mesa-larga.jpg" alt="" loading="lazy"><span>Un almuerzo tranquilo con los más cercanos, bajo techo y rodeados de árboles.</span></a></li>
+      <li><a data-wa-txt="Hola, quiero cotizar una tarde en familia en El Quillay de Pirque" data-foto="assets/img/piscina-peques.jpg" href="https://wa.me/56993979291" target="_blank" rel="noopener"><strong>Tardes en familia</strong><img class="mini" src="assets/img/piscina-peques.jpg" alt="" loading="lazy"><span>Los niños en la piscina de los peques y los grandes en la sobremesa.</span></a></li>
+      <li><a data-wa-txt="Hola, quiero cotizar un encuentro con amigos en El Quillay de Pirque" data-foto="assets/img/parrilla-deck.jpg" href="https://wa.me/56993979291" target="_blank" rel="noopener"><strong>Asados con amigos</strong><img class="mini" src="assets/img/parrilla-deck.jpg" alt="" loading="lazy"><span>Parrilla en el deck, piscina y música bajita hasta que cae el sol.</span></a></li>
+    </ul>
+  </div>
+  <div class="flotante-foto" aria-hidden="true"></div>
+</section>
+
+<!-- ======= 18:00 RESERVA ======= -->
+<section class="hora reserva" id="reserva" data-momento="Reserva">
+  <div class="envoltura">
+    <div class="hora-marca"><b>18:00</b><span>Reserva</span></div>
+    <h2>Calcula tu reserva</h2>
+    <p class="reserva-intro">Elige cuántas personas vienen y la fecha. Te mostramos el total y te dejamos el mensaje listo para enviarlo por WhatsApp.</p>
+    <div class="calc">
+      <form class="calc-panel" id="calc" onsubmit="return false">
+        <div class="campo">
+          <label for="personas"><span>¿Cuántas personas vienen?</span><output id="personasOut" for="personas">12</output></label>
+          <input type="range" id="personas" min="1" max="20" value="12" step="1">
+          <div class="marcas-rango"><span>1</span><span>10</span><span>20 máximo</span></div>
+        </div>
+        <div class="campo">
+          <label for="fecha"><span>¿Qué día te gustaría venir?</span></label>
+          <input type="date" id="fecha">
+        </div>
+        <ul class="condiciones">
+          <li>Horario de 10:00 a 20:00.</li>
+          <li>Reserva con 48 horas de anticipación.</li>
+          <li>Abono del 50% para confirmar y el saldo al ingresar.</li>
+          <li>Navidad y Año Nuevo: consulta valores y horarios.</li>
+        </ul>
+      </form>
+      <aside class="boleta" aria-live="polite">
+        <h3>Tu día en El Quillay</h3>
+        <dl>
+          <dt id="lineaPersonas">12 personas × $8.000</dt><dd id="subtotal">$96.000</dd>
+          <dt>Fecha</dt><dd id="fechaTxt">Por elegir</dd>
+        </dl>
+        <div class="total"><small>Total</small><b id="total">$96.000</b></div>
+        <dl>
+          <dt>Abono para reservar (50%)</dt><dd id="abono">$48.000</dd>
+          <dt>Saldo al ingresar</dt><dd id="saldo">$48.000</dd>
+        </dl>
+        <p class="nota" id="nota"></p>
+        <a class="btn btn-wa iman" id="enviarReserva" href="https://wa.me/56993979291" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.7-5.2A8.5 8.5 0 1 1 21 11.5z"/></svg>
+          Enviar por WhatsApp
+        </a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ======= 20:00 NOCHE ======= -->
+<section class="hora noche" id="noche" data-momento="Las luces">
+  <svg class="guirnalda" viewBox="0 0 1440 150" preserveAspectRatio="none" aria-hidden="true">
+    <defs><filter id="brillo" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+    <path d="M-10 20 Q360 130 720 40 T1450 30"/>
+    <g id="focos"></g>
+  </svg>
+  <canvas id="luciernagas" aria-hidden="true"></canvas>
+  <div class="envoltura">
+    <div class="hora-marca"><b>20:00</b><span>Se encienden las luces</span></div>
+    <div class="noche-grid">
+      <div>
+        <h2>Te esperamos en El Quillay</h2>
+        <p class="bajada">Escríbenos con tu fecha y cuántas personas vienen. Te respondemos por WhatsApp con la disponibilidad y te enviamos la ubicación exacta al confirmar.</p>
+        <div class="acciones">
+          <a class="btn btn-wa iman" data-wa href="https://wa.me/56993979291" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.7-5.2A8.5 8.5 0 1 1 21 11.5z"/></svg>
+            Reservar por WhatsApp
+          </a>
+          <a class="btn btn-borde iman" href="https://www.instagram.com/elquillaydepirque/" target="_blank" rel="noopener">Ver Instagram</a>
+        </div>
+      </div>
+      <div class="fotos-noche">
+        <img loading="lazy" src="assets/img/piscina.jpg" alt="Piscina con guirnaldas de luces encendidas">
+        <img loading="lazy" src="assets/img/piscina-noche.jpg" alt="Piscina iluminada de noche">
+        <div class="mascota-noche"><span>¡Te esperamos!</span><img loading="lazy" src="assets/img/mascota.webp" alt="El Quillay, nuestra mascota"></div>
+      </div>
+    </div>
+    <div class="contacto">
+      <a href="https://wa.me/56993979291" data-wa target="_blank" rel="noopener"><small>WhatsApp</small><b>+56 9 9397 9291</b><em>Disponibilidad y reservas</em></a>
+      <a href="https://www.instagram.com/elquillaydepirque/" target="_blank" rel="noopener"><small>Instagram</small><b>@elquillaydepirque</b><em>Fotos y novedades</em></a>
+      <div><small>Ubicación</small><b>Pirque, RM</b><em>La dirección exacta se envía al confirmar la reserva</em></div>
+    </div>
+    <footer class="pie">
+      <span>© <span id="anio">2026</span> El Quillay de Pirque</span>
+      <a href="https://karendigital.github.io/quillay/">Ver la versión clásica de la web</a>
+    </footer>
+  </div>
+</section>
+
+</main>
+
+<div class="visor" id="visor" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <button class="cerrar" aria-label="Cerrar">✕</button><button class="ant" aria-label="Foto anterior">‹</button>
+  <img alt=""><p></p>
+  <button class="sig" aria-label="Foto siguiente">›</button>
+</div>
+
+<div class="cursor" aria-hidden="true"><div class="cursor-punto"></div><div class="cursor-aro"></div></div>
+
+<!-- ======= LÓGICA BÁSICA (funciona sin librerías) ======= -->
+<script>
+(function(){
+  var $=function(s,c){return (c||document).querySelector(s)};
+  var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+  var NUM='56993979291';
+  function wa(txt){return 'https://wa.me/'+NUM+'?text='+encodeURIComponent(txt)}
+  $('#anio').textContent=new Date().getFullYear();
+
+  /* Enlaces de WhatsApp con mensaje */
+  $$('[data-wa]').forEach(function(a){a.href=wa('Hola, quiero consultar disponibilidad en El Quillay de Pirque 🌞')});
+  $$('[data-wa-txt]').forEach(function(a){a.href=wa(a.getAttribute('data-wa-txt'))});
+
+  /* Menú */
+  var menu=$('#menu'),ab=$('#abrirMenu'),ce=$('#cerrarMenu');
+  window.__menu={abrir:function(){menu.classList.add('abierto');menu.style.clipPath='circle(150% at calc(100% - 60px) 40px)';ab.setAttribute('aria-expanded','true');ce.focus()},
+    cerrar:function(){menu.classList.remove('abierto');menu.style.clipPath='';ab.setAttribute('aria-expanded','false');ab.focus()}};
+  ab.addEventListener('click',function(){window.__menu.abrir()});
+  ce.addEventListener('click',function(){window.__menu.cerrar()});
+  $$('a',menu).forEach(function(a){a.addEventListener('click',function(){window.__menu.cerrar()})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('abierto'))window.__menu.cerrar()});
+
+  /* Calculadora */
+  var VALOR=8000,MINIMO=80000;
+  var fmt=function(n){return '$'+Math.round(n).toLocaleString('es-CL')};
+  var r=$('#personas'),fe=$('#fecha');
+  var hoy=new Date();hoy.setDate(hoy.getDate()+2);
+  var iso=function(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+  fe.min=iso(hoy);
+  window.__totalAnim=null;
+  function calcula(){
+    var n=+r.value,sub=n*VALOR,tot=Math.max(sub,MINIMO);
+    $('#personasOut').textContent=n;
+    r.style.setProperty('--lleno',((n-1)/19*100)+'%');
+    $('#lineaPersonas').textContent=n+(n===1?' persona':' personas')+' × $8.000';
+    $('#subtotal').textContent=fmt(sub);
+    if(window.__totalAnim)window.__totalAnim(tot);else $('#total').textContent=fmt(tot);
+    $('#abono').textContent=fmt(tot/2);$('#saldo').textContent=fmt(tot/2);
+    $('#nota').textContent=sub<MINIMO?'La tarifa mínima por reserva es de $80.000.':'';
+    var ftxt='';
+    if(fe.value){var d=new Date(fe.value+'T12:00:00');ftxt=d.toLocaleDateString('es-CL',{weekday:'long',day:'numeric',month:'long'});}
+    $('#fechaTxt').textContent=ftxt||'Por elegir';
+    var msg='Hola, quiero reservar El Quillay de Pirque'+(ftxt?' el '+ftxt:'')+' para '+n+(n===1?' persona':' personas')+'. Total estimado '+fmt(tot)+' (abono 50%: '+fmt(tot/2)+'). ¿Está disponible?';
+    $('#enviarReserva').href=wa(msg);
+  }
+  r.addEventListener('input',calcula);fe.addEventListener('change',calcula);calcula();
+  window.__calcula=calcula;
+
+  /* Visor de fotos */
+  var vs=$('#visor'),vi=$('img',vs),vt=$('p',vs),fotos=$$('.pista img'),act=0,orig=null;
+  function muestra(i){act=(i+fotos.length)%fotos.length;vi.src=fotos[act].src;vi.alt=fotos[act].alt;vt.textContent=fotos[act].alt}
+  window.__abreVisor=function(i){orig=document.activeElement;muestra(i);vs.classList.add('abierto');if(window.__lenis)__lenis.stop();$('.cerrar',vs).focus()};
+  function cierra(){vs.classList.remove('abierto');if(window.__lenis)__lenis.start();if(orig)orig.focus()}
+  $('.cerrar',vs).addEventListener('click',cierra);
+  $('.ant',vs).addEventListener('click',function(){muestra(act-1)});
+  $('.sig',vs).addEventListener('click',function(){muestra(act+1)});
+  vs.addEventListener('click',function(e){if(e.target===vs)cierra()});
+  document.addEventListener('keydown',function(e){if(!vs.classList.contains('abierto'))return;if(e.key==='Escape')cierra();if(e.key==='ArrowLeft')muestra(act-1);if(e.key==='ArrowRight')muestra(act+1)});
+  fotos.forEach(function(f,i){var fig=f.parentNode;fig.tabIndex=0;fig.setAttribute('role','button');fig.setAttribute('aria-label','Ver foto: '+f.alt);
+    fig.addEventListener('keydown',function(e){if(e.key==='Enter')window.__abreVisor(i)});
+    fig.addEventListener('click',function(){if(!window.__arrastrando)window.__abreVisor(i)})});
+
+  /* Avance de la galería sin librerías */
+  var cg=$('.cinta-galeria');
+  cg.addEventListener('scroll',function(){var m=cg.scrollWidth-cg.clientWidth;$('#avance').style.setProperty('--avance',(m>0?Math.max(10,cg.scrollLeft/m*100):10)+'%')},{passive:true});
+})();
+</script>
+
+<!-- ======= LIBRERÍAS DE ANIMACIÓN ======= -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Draggable.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/InertiaPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+
+<!-- ======= EFECTOS ======= -->
+<script>
+(function(){
+  var raiz=document.documentElement,intro=document.getElementById('intro');
+  var $=function(s,c){return (c||document).querySelector(s)};
+  var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+  var calma=raiz.classList.contains('calma');
+  function cierraIntro(){
+    if(intro&&intro.parentNode)intro.parentNode.removeChild(intro);
+    raiz.classList.remove('intro-on');raiz.classList.add('sin-intro');
+    try{sessionStorage.setItem('quillay2Intro','1')}catch(e){}
+    if(window.__lenis)window.__lenis.start();
+    if(window.ScrollTrigger)ScrollTrigger.refresh();
+  }
+  if(!window.gsap||!window.ScrollTrigger){raiz.classList.add('no-gsap');cierraIntro();return}
+  if(calma){cierraIntro();return}
+  gsap.registerPlugin(ScrollTrigger);
+  if(window.SplitText)gsap.registerPlugin(SplitText);
+  if(window.Draggable)gsap.registerPlugin(Draggable);
+  if(window.InertiaPlugin)gsap.registerPlugin(InertiaPlugin);
+  var fino=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  /* ---------- 1. Scroll suave ---------- */
+  if(window.Lenis){
+    var lenis=new Lenis({lerp:.085,smoothWheel:true});
+    window.__lenis=lenis;
+    lenis.on('scroll',ScrollTrigger.update);
+    gsap.ticker.add(function(t){lenis.raf(t*1000)});
+    gsap.ticker.lagSmoothing(0);
+    $$('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){
+      var id=a.getAttribute('href');var el=id.length>1&&$(id);if(!el)return;
+      e.preventDefault();lenis.scrollTo(el,{offset:id==='#llegada'?0:-20,duration:1.6});
+    })});
+  }
+
+  /* ---------- 2. El día pasa con el scroll: cielo, sol, luna, reloj ---------- */
+  var cielos=[ // [arriba, abajo, texto]
+    [0,'#9fdcf5','#eaf8fc','#13301f'],
+    [.22,'#6cc4ef','#d9f2fb','#13301f'],
+    [.45,'#86cdee','#fdf1cf','#13301f'],
+    [.62,'#f5c46f','#fde3bb','#13301f'],
+    [.78,'#e98b8f','#f8c08a','#13301f'],
+    [.9,'#232b63','#5a4f8f','#f4f6ff'],
+    [1,'#121a42','#2b2f66','#f4f6ff']];
+  var astro=$('.astro'),sol=$('.astro .sol'),luna=$('.astro .luna'),estrellas=$('.estrellas');
+  var horaTxt=$('#relojHora'),aguja=$('.reloj .aguja'),horaria=$('.reloj .horaria');
+  function mezcla(p){
+    for(var i=0;i<cielos.length-1;i++){if(p<=cielos[i+1][0])break}
+    var a=cielos[i],b=cielos[Math.min(i+1,cielos.length-1)],t=b[0]===a[0]?0:(p-a[0])/(b[0]-a[0]);
+    return [gsap.utils.interpolate(a[1],b[1],t),gsap.utils.interpolate(a[2],b[2],t),gsap.utils.interpolate(a[3],b[3],t)];
+  }
+  var ultimaHora='';
+  function dia(p){
+    var c=mezcla(p);
+    raiz.style.setProperty('--cielo-a',c[0]);raiz.style.setProperty('--cielo-b',c[1]);raiz.style.setProperty('--texto',c[2]);
+    raiz.style.setProperty('--texto-suave',p>.84?'rgba(244,246,255,.78)':'rgba(19,48,31,.72)');
+    raiz.classList.toggle('es-noche',p>.84);
+    var W=window.innerWidth,H=window.innerHeight,s=astro.offsetWidth;
+    var x=gsap.utils.interpolate(W*.82,W*.06,p),y=H*.62-Math.sin(Math.min(p/.86,1)*Math.PI)*H*.5;
+    if(p>.86){x=gsap.utils.interpolate(W*.84,W*.78,(p-.86)/.14);y=H*.12}
+    gsap.set(astro,{x:x-s/2,y:y-s/2});
+    var noche=gsap.utils.clamp(0,1,(p-.8)/.08);
+    sol.style.opacity=1-noche;luna.style.opacity=noche;estrellas.style.opacity=noche;
+    sol.style.filter='hue-rotate('+(-gsap.utils.clamp(0,1,(p-.55)/.25)*18)+'deg) saturate('+(1+gsap.utils.clamp(0,1,(p-.55)/.25)*.4)+')';
+    var min=Math.round((10*60+p*600)/5)*5,hh=Math.floor(min/60),mm=min%60;
+    var txt=String(Math.min(hh,20)).padStart(2,'0')+':'+(hh>=20?'00':String(mm).padStart(2,'0'));
+    if(txt!==ultimaHora){horaTxt.textContent=txt;ultimaHora=txt}
+    aguja.style.transform='rotate('+(p*600*6)+'deg)';horaria.style.transform='rotate('+((10+p*10)*30)+'deg)';
+  }
+  ScrollTrigger.create({start:0,end:'max',onUpdate:function(s){dia(s.progress)}});
+  dia(0);
+  $$('.hora').forEach(function(sec){
+    ScrollTrigger.create({trigger:sec,start:'top 55%',end:'bottom 55%',onToggle:function(s){if(s.isActive)$('#relojMomento').textContent=sec.getAttribute('data-momento')}});
+  });
+
+  /* ---------- 3. Hero: título con peso variable ---------- */
+  var titulo=$('.hero-titulo');
+  var heroLetras=null;
+  if(window.SplitText){
+    var sp=SplitText.create(titulo,{type:'words,chars',charsClass:'letra'});
+    heroLetras=sp.chars;
+  }
+  gsap.to('.hero-titulo',{fontVariationSettings:'"wdth" 75',letterSpacing:'-.045em',ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.hero-grid',{yPercent:-12,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.cordillera .lejos',{yPercent:18,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.cordillera .medio',{yPercent:10,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+  function entradaHero(){
+    var tl=gsap.timeline({defaults:{ease:'expo.out'}});
+    if(heroLetras)tl.from(heroLetras,{yPercent:110,opacity:0,rotate:8,fontWeight:200,duration:1.1,stagger:.018});
+    tl.from('.hero-lugar,.hero-bajada,.hero .acciones',{y:30,opacity:0,duration:.9,stagger:.1},'-=.8')
+      .fromTo('.hero-foto',{clipPath:'inset(100% 0% 0% 0%)'},{clipPath:'inset(0% 0% 0% 0%)',duration:1.4,ease:'power4.inOut',clearProps:'clipPath'},0)
+      .from('.hero-foto img',{scale:1.3,duration:1.8},0)
+      .from('.cordillera path',{yPercent:60,duration:1.4,stagger:.12},0.2)
+      .from('.nav,.reloj',{y:-20,opacity:0,duration:.8},.5);
+    return tl;
+  }
+
+  /* ---------- 4. Agua sobre la foto del hero (WebGL) ---------- */
+  (function(){
+    var fig=$('.hero-foto'),cv=$('#agua'),img=$('.hero-foto img');
+    var gl=cv.getContext('webgl',{premultipliedAlpha:false,antialias:false,alpha:true});
+    if(!gl)return;
+    var vs='attribute vec2 p;varying vec2 v;void main(){v=p*.5+.5;v.y=1.-v.y;gl_Position=vec4(p,0.,1.);}';
+    var fs='precision mediump float;varying vec2 v;uniform sampler2D t;uniform vec2 m;uniform vec2 esc;uniform float tiempo;uniform float fuerza;'+
+      'void main(){vec2 d=v-m;float r=length(d);'+
+      'float onda=sin(r*42.-tiempo*5.)*exp(-r*6.)*fuerza;'+
+      'vec2 amb=vec2(sin(v.y*16.+tiempo*1.3),cos(v.x*12.-tiempo*1.1))*.0022;'+
+      'vec2 uv=(v-.5)*esc+.5+normalize(d+1e-4)*onda*.016+amb;'+
+      'vec4 c=texture2D(t,clamp(uv,0.,1.));c.rgb+=onda*.09;gl_FragColor=c;}';
+    function sh(tipo,src){var s=gl.createShader(tipo);gl.shaderSource(s,src);gl.compileShader(s);return gl.getShaderParameter(s,gl.COMPILE_STATUS)?s:null}
+    var a=sh(gl.VERTEX_SHADER,vs),b=sh(gl.FRAGMENT_SHADER,fs);if(!a||!b)return;
+    var pr=gl.createProgram();gl.attachShader(pr,a);gl.attachShader(pr,b);gl.linkProgram(pr);
+    if(!gl.getProgramParameter(pr,gl.LINK_STATUS))return;
+    gl.useProgram(pr);
+    var buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+    gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+    var loc=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+    var uM=gl.getUniformLocation(pr,'m'),uE=gl.getUniformLocation(pr,'esc'),uT=gl.getUniformLocation(pr,'tiempo'),uF=gl.getUniformLocation(pr,'fuerza');
+    var tex=gl.createTexture();
+    var raton={x:.5,y:.6},meta={x:.5,y:.6},fuerza=.35,objetivo=.35,visible=true,listo=false;
+    function tam(){var r=fig.getBoundingClientRect(),dpr=Math.min(window.devicePixelRatio||1,2);cv.width=r.width*dpr;cv.height=r.height*dpr;gl.viewport(0,0,cv.width,cv.height);
+      var ca=cv.width/cv.height,ia=img.naturalWidth/img.naturalHeight;gl.uniform2f(uE,ia>ca?ca/ia:1,ia>ca?1:ia/ca)}
+    function carga(){
+      gl.bindTexture(gl.TEXTURE_2D,tex);
+      gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+      try{gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,img)}catch(e){return}
+      tam();listo=true;fig.classList.add('agua-lista');
+    }
+    if(img.complete&&img.naturalWidth)carga();else img.addEventListener('load',carga);
+    window.addEventListener('resize',function(){if(listo)tam()});
+    fig.addEventListener('pointermove',function(e){var r=fig.getBoundingClientRect();meta.x=(e.clientX-r.left)/r.width;meta.y=(e.clientY-r.top)/r.height;objetivo=1});
+    fig.addEventListener('pointerleave',function(){objetivo=.35});
+    fig.addEventListener('pointerdown',function(){fuerza=1.8});
+    new IntersectionObserver(function(e){visible=e[0].isIntersecting}).observe(fig);
+    var t0=performance.now();
+    gsap.ticker.add(function(){
+      if(!listo||!visible)return;
+      raton.x+=(meta.x-raton.x)*.08;raton.y+=(meta.y-raton.y)*.08;fuerza+=(objetivo-fuerza)*.04;
+      if(!fino){meta.x=.5+Math.sin((performance.now()-t0)/2400)*.25;meta.y=.62+Math.cos((performance.now()-t0)/3100)*.12}
+      gl.uniform2f(uM,raton.x,raton.y);gl.uniform1f(uT,(performance.now()-t0)/1000);gl.uniform1f(uF,fuerza);
+      gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+    });
+  })();
+
+  /* ---------- 5. Manifiesto: palabra por palabra con el scroll ---------- */
+  if(window.SplitText){
+    var spm=SplitText.create('#manifiesto',{type:'words',wordsClass:'palabra'});
+    gsap.to(spm.words,{opacity:1,stagger:.1,ease:'none',scrollTrigger:{trigger:'#manifiesto',start:'top 80%',end:'bottom 45%',scrub:true}});
+  }
+  gsap.from('.manifiesto .dato',{y:30,opacity:0,stagger:.08,duration:.8,ease:'back.out(2)',scrollTrigger:{trigger:'.manifiesto .dato-fila',start:'top 90%'}});
+
+  /* ---------- 6. Títulos que entran letra por letra ---------- */
+  if(window.SplitText){
+    $$('main h2:not(.noche h2)').forEach(function(h){
+      var s=SplitText.create(h,{type:'lines,words',mask:'lines'});
+      gsap.from(s.words,{yPercent:120,duration:1,ease:'expo.out',stagger:.04,scrollTrigger:{trigger:h,start:'top 85%',once:true}});
+    });
+  }
+  $$('.hora-marca').forEach(function(m){
+    gsap.from(m.children,{x:-30,opacity:0,stagger:.1,duration:.8,ease:'power3.out',scrollTrigger:{trigger:m,start:'top 88%',once:true}});
+  });
+
+  /* ---------- 7. Tarjetas apiladas ---------- */
+  var tarjetas=$$('.tarjeta');
+  tarjetas.forEach(function(t,i){
+    if(i===tarjetas.length-1)return;
+    gsap.to(t,{scale:.9-(tarjetas.length-i)*.012,filter:'brightness(.75)',ease:'none',
+      scrollTrigger:{trigger:tarjetas[i+1],start:'top bottom',end:'top '+(11+ (i+1)*1.2)+'%',scrub:true}});
+    gsap.fromTo($$('img',t),{scale:1.15},{scale:1,ease:'none',scrollTrigger:{trigger:t,start:'top bottom',end:'top 15%',scrub:true}});
+  });
+
+  /* ---------- 8. Galería arrastrable con inercia ---------- */
+  var cinta=$('.cinta-galeria'),pista=$('#pista'),avance=$('#avance');
+  if(window.Draggable){
+    var limite=function(){return Math.min(0,cinta.offsetWidth-pista.scrollWidth)};
+    var setSkew=gsap.quickTo(pista,'skewX',{duration:.5,ease:'power3'});
+    var ultX=0,ultT=0;
+    var dr=Draggable.create(pista,{type:'x',inertia:!!window.InertiaPlugin,bounds:{minX:limite(),maxX:0},edgeResistance:.85,dragClickables:true,
+      onPress:function(){window.__arrastrando=false},
+      onDrag:function(){window.__arrastrando=true;mueve(this)},
+      onThrowUpdate:function(){mueve(this)},
+      onRelease:function(){setTimeout(function(){window.__arrastrando=false},60);setSkew(0)},
+      onThrowComplete:function(){setSkew(0)}})[0];
+    function mueve(d){
+      var now=performance.now(),vel=(d.x-ultX)/Math.max(16,now-ultT);ultX=d.x;ultT=now;
+      setSkew(gsap.utils.clamp(-8,8,vel*-6));
+      var m=limite();avance.style.setProperty('--avance',(m<0?Math.max(10,d.x/m*100):10)+'%');
+    }
+    window.addEventListener('resize',function(){dr.applyBounds({minX:limite(),maxX:0})});
+    // Al llegar a la sección la pista entra deslizándose
+    gsap.from(pista,{x:300,duration:1.6,ease:'expo.out',scrollTrigger:{trigger:cinta,start:'top 80%',once:true},onComplete:function(){dr.update()}});
+    $$('.foto').forEach(function(f,i){gsap.from(f,{yPercent:30,rotate:i%2?4:-4,opacity:0,duration:1.1,ease:'expo.out',delay:i*.05,scrollTrigger:{trigger:cinta,start:'top 80%',once:true}})});
+  }
+
+  /* ---------- 9. Celebraciones: foto que sigue al cursor ---------- */
+  var flot=$('.flotante-foto');
+  if(fino&&flot){
+    var imgs={};
+    $$('.lista-cele a').forEach(function(a){var src=a.getAttribute('data-foto');if(!imgs[src]){var im=new Image();im.src=src;im.alt='';flot.appendChild(im);imgs[src]=im}});
+    var fx=gsap.quickTo(flot,'x',{duration:.6,ease:'power3'}),fy=gsap.quickTo(flot,'y',{duration:.6,ease:'power3'});
+    var lista=$('.lista-cele');
+    lista.addEventListener('pointermove',function(e){fx(e.clientX);fy(e.clientY);
+      var dx=e.movementX||0;gsap.to(flot,{rotate:gsap.utils.clamp(-12,12,dx*1.2),duration:.4})});
+    $$('.lista-cele a').forEach(function(a){
+      a.addEventListener('pointerenter',function(){var src=a.getAttribute('data-foto');
+        Object.keys(imgs).forEach(function(k){imgs[k].classList.toggle('ver',k===src)});
+        gsap.to(flot,{opacity:1,scale:1,duration:.4,ease:'back.out(2)'})});
+    });
+    lista.addEventListener('pointerleave',function(){gsap.to(flot,{opacity:0,scale:.6,duration:.3})});
+  }
+  gsap.from('.lista-cele li',{y:40,opacity:0,stagger:.1,duration:.9,ease:'expo.out',scrollTrigger:{trigger:'.lista-cele',start:'top 85%',once:true}});
+
+  /* ---------- 10. Calculadora: el total corre ---------- */
+  var totalEl=$('#total'),valorTot={v:96000};
+  window.__totalAnim=function(n){gsap.to(valorTot,{v:n,duration:.6,ease:'power3.out',overwrite:true,onUpdate:function(){totalEl.textContent='$'+(Math.round(valorTot.v/1000)*1000).toLocaleString('es-CL')}})};
+  $('#personas').addEventListener('input',function(){gsap.fromTo('#personasOut',{scale:1.25},{scale:1,duration:.4,ease:'back.out(3)'})});
+  gsap.from('.calc-panel,.boleta',{y:60,opacity:0,stagger:.15,duration:1,ease:'expo.out',scrollTrigger:{trigger:'.calc',start:'top 85%',once:true}});
+  gsap.from('.boleta',{rotate:3,duration:1.2,ease:'elastic.out(1,.5)',scrollTrigger:{trigger:'.calc',start:'top 85%',once:true}});
+
+  /* ---------- 11. Noche: guirnaldas, luciérnagas, mascota ---------- */
+  var g=$('#focos'),path=$('.guirnalda path'),focos=[];
+  if(g&&path.getTotalLength){
+    var L=path.getTotalLength(),N=16;
+    for(var i=1;i<N;i++){var pt=path.getPointAtLength(L*i/N),c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+      c.setAttribute('cx',pt.x);c.setAttribute('cy',pt.y+9);c.setAttribute('r',7);g.appendChild(c);focos.push(c)}
+    ScrollTrigger.create({trigger:'.noche',start:'top 70%',once:true,onEnter:function(){
+      focos.forEach(function(f,i){gsap.delayedCall(i*.09,function(){f.classList.add('on');
+        gsap.fromTo(f,{attr:{r:2}},{attr:{r:7},duration:.5,ease:'back.out(3)'})})});
+      gsap.delayedCall(focos.length*.09+.4,parpadeo);
+    }});
+    function parpadeo(){var f=focos[Math.floor(Math.random()*focos.length)];f.classList.remove('on');
+      gsap.delayedCall(.08+Math.random()*.12,function(){f.classList.add('on')});gsap.delayedCall(1+Math.random()*2.5,parpadeo)}
+  }
+  (function(){
+    var cv=$('#luciernagas');if(!cv)return;var c=cv.getContext('2d'),ps=[],W=0,H=0,vis=false,D=Math.min(window.devicePixelRatio||1,2);
+    function tam(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=W*D;cv.height=H*D;c.setTransform(D,0,0,D,0,0)}
+    tam();window.addEventListener('resize',tam);
+    for(var i=0;i<34;i++)ps.push({x:Math.random(),y:.3+Math.random()*.7,f:Math.random()*6.28,v:.0004+Math.random()*.0008,r:1.2+Math.random()*2});
+    new IntersectionObserver(function(e){vis=e[0].isIntersecting}).observe(cv);
+    gsap.ticker.add(function(){if(!vis)return;c.clearRect(0,0,W,H);
+      ps.forEach(function(p){p.f+=.02;p.x+=Math.sin(p.f)*p.v;p.y-=p.v*.6;if(p.y<.15)p.y=1;
+        var a=.35+Math.sin(p.f*2)*.35;c.beginPath();c.arc(p.x*W,p.y*H,p.r,0,6.28);c.fillStyle='rgba(255,233,140,'+a+')';c.shadowColor='rgba(255,220,120,.9)';c.shadowBlur=12;c.fill()});});
+  })();
+  gsap.from('.fotos-noche>img',{y:80,opacity:0,rotate:0,stagger:.15,duration:1.2,ease:'expo.out',scrollTrigger:{trigger:'.fotos-noche',start:'top 80%',once:true}});
+  var mn=$('.mascota-noche');
+  if(mn){
+    var tlm=gsap.timeline({scrollTrigger:{trigger:'.fotos-noche',start:'top 70%',once:true}});
+    tlm.from(mn,{scaleY:0,scaleX:.6,duration:1,ease:'elastic.out(1,.5)',delay:.4})
+       .from('.mascota-noche span',{scale:0,transformOrigin:'100% 100%',duration:.5,ease:'back.out(3)'},'-=.4')
+       .to(mn,{keyframes:{rotate:[0,-6,6,-4,3,0]},duration:1.4,ease:'sine.inOut'},'<');
+  }
+  if(window.SplitText){
+    var sn=SplitText.create('.noche h2',{type:'chars'});
+    gsap.from(sn.chars,{opacity:0,y:40,rotateX:-80,transformOrigin:'50% 0%',stagger:.025,duration:.9,ease:'back.out(2)',scrollTrigger:{trigger:'.noche h2',start:'top 85%',once:true}});
+  }
+
+  /* ---------- 12. Cursor y botones magnéticos ---------- */
+  if(fino){
+    var cur=$('.cursor'),punto=$('.cursor-punto'),aro=$('.cursor-aro');cur.style.display='block';
+    var px=gsap.quickTo(punto,'x',{duration:.08}),py=gsap.quickTo(punto,'y',{duration:.08}),ax=gsap.quickTo(aro,'x',{duration:.45,ease:'power3'}),ay=gsap.quickTo(aro,'y',{duration:.45,ease:'power3'});
+    window.addEventListener('pointermove',function(e){px(e.clientX);py(e.clientY);ax(e.clientX);ay(e.clientY)});
+    $$('[data-cursor]').forEach(function(el){el.addEventListener('pointerenter',function(){aro.classList.add('grande');aro.textContent=el.getAttribute('data-cursor')});
+      el.addEventListener('pointerleave',function(){aro.classList.remove('grande');aro.textContent=''})});
+    $$('a,button,input').forEach(function(el){if(el.closest('[data-cursor]'))return;el.addEventListener('pointerenter',function(){aro.classList.add('enlace')});el.addEventListener('pointerleave',function(){aro.classList.remove('enlace')})});
+    $$('.iman').forEach(function(b){
+      b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();gsap.to(b,{x:(e.clientX-r.left-r.width/2)*.25,y:(e.clientY-r.top-r.height/2)*.35,duration:.4,ease:'power3'})});
+      b.addEventListener('pointerleave',function(){gsap.to(b,{x:0,y:0,duration:.7,ease:'elastic.out(1,.4)'})});
+    });
+  }
+
+  /* ---------- 13. Menú con apertura circular ---------- */
+  var menu=$('#menu');
+  window.__menu.abrir=function(){menu.classList.add('abierto');if(window.__lenis)__lenis.stop();$('#abrirMenu').setAttribute('aria-expanded','true');
+    gsap.fromTo(menu,{clipPath:'circle(0% at calc(100% - 60px) 40px)'},{clipPath:'circle(150% at calc(100% - 60px) 40px)',duration:.9,ease:'power4.inOut'});
+    gsap.fromTo('.menu li a',{yPercent:110},{yPercent:0,stagger:.05,duration:.8,ease:'expo.out',delay:.25});$('#cerrarMenu').focus()};
+  window.__menu.cerrar=function(){if(window.__lenis)__lenis.start();$('#abrirMenu').setAttribute('aria-expanded','false');
+    gsap.to(menu,{clipPath:'circle(0% at calc(100% - 60px) 40px)',duration:.6,ease:'power4.inOut',onComplete:function(){menu.classList.remove('abierto')}})};
+
+  /* ---------- 14. Nav se esconde al bajar y vuelve al subir ---------- */
+  var navEl=$('.nav');ScrollTrigger.create({start:120,end:'max',onUpdate:function(s){gsap.to(navEl,{yPercent:s.direction>0?-120:0,duration:.4,ease:'power2.out',overwrite:'auto'})},onLeaveBack:function(){gsap.to(navEl,{yPercent:0,duration:.3})}});
+
+  /* ---------- 15. Intro: amanecer ---------- */
+  var heroTl=null;
+  if(intro&&raiz.classList.contains('intro-on')){
+    if(window.__lenis)window.__lenis.stop();
+    var horaIntro=$('.intro-hora b'),reloj={m:7*60};
+    var tl=gsap.timeline({onComplete:function(){cierraIntro()}});
+    tl.to(reloj,{m:10*60,duration:2.4,ease:'power2.inOut',onUpdate:function(){var m=Math.round(reloj.m/5)*5;horaIntro.textContent=String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0')}},0)
+      .from('.intro-sol',{y:'40vh',duration:2.4,ease:'power2.out'},0)
+      .to('.intro-cielo',{opacity:1,duration:2.2,ease:'power1.inOut'},0.1)
+      .to('.intro-hora',{color:'#13301f',duration:1.2},1.2)
+      .from('.intro-mascota',{scaleY:0,scaleX:.5,duration:1.1,ease:'elastic.out(1,.5)'},1.1)
+      .to('.intro-mascota .globo',{scale:1,duration:.5,ease:'back.out(3)'},1.8)
+      .to('.intro-mascota',{keyframes:{rotate:[0,-6,6,-4,3,0]},duration:1.3,ease:'sine.inOut'},1.8)
+      .to('.parpado',{scaleY:1,duration:.07,yoyo:true,repeat:1,ease:'none'},2.6)
+      .addLabel('salida',3.3)
+      .to('.intro-hora span',{opacity:0,duration:.3},'salida')
+      .to('.intro-mascota',{y:-40,scale:.2,opacity:0,duration:.6,ease:'power3.in'},'salida')
+      .to('.intro-montes .izq',{xPercent:-60,duration:1.1,ease:'power4.inOut'},'salida+=.15')
+      .to('.intro-montes .der',{xPercent:60,duration:1.1,ease:'power4.inOut'},'salida+=.15')
+      .to(intro,{yPercent:-100,duration:1.1,ease:'power4.inOut'},'salida+=.35')
+      .add(function(){heroTl=entradaHero()},'salida+=.6');
+    var saltar=function(){if(tl.time()<tl.labels.salida-.05){tl.seek(tl.labels.salida-.02);tl.play()}};
+    $('.intro-saltar').addEventListener('click',saltar);
+    intro.addEventListener('click',function(e){if(!e.target.closest('.intro-saltar'))saltar()});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&intro.parentNode)saltar()});
+  }else{
+    entradaHero();
+  }
+  window.addEventListener('load',function(){ScrollTrigger.refresh()});
+})();
+</script>
+</body>
+</html>
